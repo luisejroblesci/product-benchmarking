@@ -1,0 +1,31 @@
+{
+  "suite": "circleci-basic",
+  "description": "Basic CircleCI operations - pipeline status, triggering, and context queries",
+  "cases": [
+    {
+      "id": "last-pipeline-status",
+      "prompt": "What is the status of the last pipeline run on the main branch of the luisejroblesci/circleci-cli project?",
+      "tags": ["pipeline", "status"]
+    },
+    {
+      "id": "trigger-pipeline",
+      "prompt": "Trigger a new pipeline on the main branch of luisejroblesci/circleci-cli and tell me its ID.",
+      "tags": ["pipeline", "trigger"]
+    },
+    {
+      "id": "workflow-details",
+      "prompt": "Find the most recent pipeline for luisejroblesci/circleci-cli and list the workflows and their statuses.",
+      "tags": ["pipeline", "workflow"]
+    },
+    {
+      "id": "validate-config",
+      "prompt": "Validate the CircleCI config file at .circleci/config.yml and tell me if there are any errors.",
+      "tags": ["config", "validate"]
+    },
+    {
+      "id": "failed-builds",
+      "prompt": "Show me the last 5 builds for luisejroblesci/circleci-cli and highlight any that failed.",
+      "tags": ["pipeline", "status", "failures"]
+    }
+  ]
+}

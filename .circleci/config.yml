@@ -1,0 +1,40 @@
+version: 2.1
+
+parameters:
+  suite:
+    type: string
+    default: "suites/example.json"
+  tools:
+    type: string
+    default: "api-v2,all"
+
+jobs:
+  skills-benchmark:
+    docker:
+      - image: cimg/node:22.0
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm ci
+      - run:
+          name: Run skills benchmark
+          command: |
+            npx tsx src/cli.ts skills \
+              --suite << pipeline.parameters.suite >> \
+              --tools << pipeline.parameters.tools >> \
+              --out results/uc2-run-${CIRCLE_BUILD_NUM}.json
+          environment:
+            CIRCLECI_TOKEN: $CIRCLECI_TOKEN
+            ANTHROPIC_API_KEY: $ANTHROPIC_API_KEY
+      - store_artifacts:
+          path: results
+          destination: benchmark-results
+      - store_artifacts:
+          path: reports
+          destination: benchmark-reports
+
+workflows:
+  benchmark:
+    jobs:
+      - skills-benchmark
