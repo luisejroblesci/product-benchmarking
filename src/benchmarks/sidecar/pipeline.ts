@@ -1,8 +1,4 @@
-import { execFile } from 'child_process';
-import { promisify } from 'util';
 import axios from 'axios';
-
-const execFileAsync = promisify(execFile);
 
 export interface PipelineResult {
   pipelineId: string;
@@ -10,83 +6,75 @@ export interface PipelineResult {
   status: 'success' | 'failed' | 'error' | 'canceled';
 }
 
-const POLL_INTERVAL_MS = 5_000;
-const TIMEOUT_MS = 30 * 60_000; // 30 min max
-
 type WorkflowStatus = 'success' | 'failed' | 'error' | 'canceled' | 'running' | 'on_hold' | 'failing' | 'unauthorized';
 
-async function getPipelineWorkflows(pipelineId: string, token: string) {
-  const res = await axios.get<{ items: Array<{ id: string; status: WorkflowStatus; stopped_at: string | null }> }>(
-    `https://circleci.com/api/v2/pipeline/${pipelineId}/workflow`,
-    { headers: { 'Circle-Token': token } }
-  );
-  return res.data.items;
+interface CIPipeline {
+  id: string;
+  vcs: { revision: string };
+  created_at: string;
+}
+
+interface CIWorkflow {
+  id: string;
+  status: WorkflowStatus;
+  created_at: string;
+  stopped_at: string | null;
 }
 
 function isTerminal(status: WorkflowStatus): boolean {
   return ['success', 'failed', 'error', 'canceled'].includes(status);
 }
 
-export async function pushAndMeasure(
-  repoDir: string,
-  sha: string,
-  benchmarkBranch: string,
+// Pipelines that ran longer than this are stuck/timed-out and excluded from results.
+const MAX_CI_DURATION_MS = 30 * 60_000; // 30 min
+
+// Find recent pipelines on the given branch that have a terminal CI result.
+export async function fetchRecentPipelines(
   repo: string,
-  token: string
-): Promise<PipelineResult> {
-  const start = Date.now();
-
-  // Force-push this commit to the benchmark branch
-  try {
-    await execFileAsync('git', ['push', 'origin', `${sha}:refs/heads/${benchmarkBranch}`, '--force'], {
-      cwd: repoDir,
-    });
-  } catch (err) {
-    return { pipelineId: '', durationMs: Date.now() - start, status: 'error' };
-  }
-
-  // Give CircleCI a moment to register the push before polling
-  await new Promise((r) => setTimeout(r, 3_000));
-
-  // Find the pipeline triggered by this push
-  let pipelineId = '';
+  branch: string,
+  token: string,
+  limit = 200
+): Promise<CIPipeline[]> {
   const [org, repoName] = repo.split('/');
-  for (let attempt = 0; attempt < 10; attempt++) {
-    const res = await axios.get<{ items: Array<{ id: string; vcs: { revision: string }; created_at: string }> }>(
+  const results: CIPipeline[] = [];
+  let pageToken: string | undefined;
+
+  while (results.length < limit) {
+    const res = await axios.get<{ items: CIPipeline[]; next_page_token?: string }>(
       `https://circleci.com/api/v2/project/github/${org}/${repoName}/pipeline`,
-      {
-        headers: { 'Circle-Token': token },
-        params: { branch: benchmarkBranch },
-      }
+      { headers: { 'Circle-Token': token }, params: { branch, ...(pageToken ? { 'page-token': pageToken } : {}) } }
     );
-    const match = res.data.items.find((p) => p.vcs.revision === sha);
-    if (match) {
-      pipelineId = match.id;
-      break;
-    }
-    await new Promise((r) => setTimeout(r, 2_000));
+    results.push(...res.data.items);
+    if (!res.data.next_page_token || results.length >= limit) break;
+    pageToken = res.data.next_page_token;
   }
 
-  if (!pipelineId) {
-    return { pipelineId: '', durationMs: Date.now() - start, status: 'error' };
-  }
+  return results.slice(0, limit);
+}
 
-  // Poll until all workflows reach a terminal state
-  const deadline = start + TIMEOUT_MS;
-  while (Date.now() < deadline) {
-    const workflows = await getPipelineWorkflows(pipelineId, token);
-    if (workflows.length > 0 && workflows.every((w) => isTerminal(w.status))) {
-      const overallStatus = workflows.some((w) => w.status === 'failed')
-        ? 'failed'
-        : workflows.some((w) => w.status === 'error')
-        ? 'error'
-        : workflows.some((w) => w.status === 'canceled')
-        ? 'canceled'
-        : 'success';
-      return { pipelineId, durationMs: Date.now() - start, status: overallStatus };
-    }
-    await new Promise((r) => setTimeout(r, POLL_INTERVAL_MS));
-  }
+// Get the historical duration and status for a pipeline that has already run.
+export async function getHistoricalResult(pipelineId: string, token: string): Promise<PipelineResult | null> {
+  const res = await axios.get<{ items: CIWorkflow[] }>(
+    `https://circleci.com/api/v2/pipeline/${pipelineId}/workflow`,
+    { headers: { 'Circle-Token': token } }
+  );
+  const workflows = res.data.items;
+  if (workflows.length === 0 || !workflows.every((w) => isTerminal(w.status))) return null;
 
-  return { pipelineId, durationMs: Date.now() - start, status: 'error' };
+  const overallStatus: PipelineResult['status'] = workflows.some((w) => w.status === 'failed')
+    ? 'failed'
+    : workflows.some((w) => w.status === 'error')
+    ? 'error'
+    : workflows.some((w) => w.status === 'canceled')
+    ? 'canceled'
+    : 'success';
+
+  // Duration = latest stopped_at - earliest created_at across all workflows
+  const starts = workflows.map((w) => new Date(w.created_at).getTime());
+  const ends = workflows.map((w) => (w.stopped_at ? new Date(w.stopped_at).getTime() : null)).filter(Boolean) as number[];
+  if (ends.length === 0) return null;
+
+  const durationMs = Math.max(...ends) - Math.min(...starts);
+  if (durationMs > MAX_CI_DURATION_MS) return null; // exclude stuck/timed-out pipelines
+  return { pipelineId, durationMs, status: overallStatus };
 }

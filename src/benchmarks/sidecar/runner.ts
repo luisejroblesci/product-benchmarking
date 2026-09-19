@@ -1,8 +1,8 @@
 import { execFile } from 'child_process';
 import { promisify } from 'util';
 import { v4 as uuidv4 } from 'uuid';
-import { runChunkValidation } from './chunk.js';
-import { pushAndMeasure } from './pipeline.js';
+import { runChunkValidation, verifySidecar, resolveSidecarId } from './chunk.js';
+import { fetchRecentPipelines, getHistoricalResult } from './pipeline.js';
 import type { UC1RunResult, CommitResult, UC1Summary } from '../../core/types.js';
 import { emitBenchEvent } from '../../ui/server.js';
 
@@ -10,6 +10,7 @@ const execFileAsync = promisify(execFile);
 
 export interface SidecarRunOptions {
   repo: string;
+  ciRepo?: string;       // upstream repo to pull historical CI data from (defaults to repo)
   repoDir: string;
   branch?: string;
   n?: number;
@@ -18,40 +19,61 @@ export interface SidecarRunOptions {
   circleciToken: string;
 }
 
-async function touchesGoFiles(repoDir: string, sha: string): Promise<boolean> {
-  const { stdout } = await execFileAsync(
-    'git',
-    ['diff-tree', '--no-commit-id', '-r', '--name-only', sha],
-    { cwd: repoDir }
-  );
-  return stdout.split('\n').some((f) => f.endsWith('.go'));
+interface CandidateCommit {
+  sha: string;
+  message: string;
+  pipelineId: string;
+  ciStatus: 'success' | 'failed' | 'error' | 'canceled';
+  ciDurationMs: number;
 }
 
-async function getCommits(repoDir: string, branch: string, n: number): Promise<Array<{ sha: string; message: string }>> {
-  // Fetch more candidates than needed so we can filter for .go-touching commits
-  const { stdout } = await execFileAsync(
-    'git',
-    ['log', `origin/${branch}`, '--format=%H|%s', `-${n * 5}`],
-    { cwd: repoDir }
-  );
-  const all = stdout
-    .trim()
-    .split('\n')
-    .filter(Boolean)
-    .map((line) => {
-      const [sha, ...rest] = line.split('|');
-      return { sha, message: rest.join('|') };
-    });
+// Select N real commits from CircleCI history: a mix of passing and failing.
+async function selectCommits(
+  repo: string,
+  branch: string,
+  token: string,
+  n: number,
+  specificShas?: string[]
+): Promise<CandidateCommit[]> {
+  const pipelines = await fetchRecentPipelines(repo, branch, token, 100);
 
-  // Only keep commits that touch .go files — sidecar gates only fire on those
-  const filtered: Array<{ sha: string; message: string }> = [];
-  for (const commit of all) {
-    if (filtered.length >= n) break;
-    if (await touchesGoFiles(repoDir, commit.sha)) {
-      filtered.push(commit);
-    }
+  const candidates: CandidateCommit[] = [];
+  const passing: CandidateCommit[] = [];
+  const failing: CandidateCommit[] = [];
+
+  for (const pipeline of pipelines) {
+    if (specificShas && !specificShas.includes(pipeline.vcs.revision)) continue;
+    const result = await getHistoricalResult(pipeline.id, token);
+    if (!result) continue; // still running or no workflows
+
+    const candidate: CandidateCommit = {
+      sha: pipeline.vcs.revision,
+      message: '',
+      pipelineId: pipeline.id,
+      ciStatus: result.status,
+      ciDurationMs: result.durationMs,
+    };
+
+    if (result.status === 'success') passing.push(candidate);
+    else failing.push(candidate);
+
+    if (passing.length + failing.length >= n * 2) break; // enough candidates
   }
-  return filtered;
+
+  if (specificShas) return [...passing, ...failing].slice(0, n);
+
+  // Target ~60% passing, ~40% failing (rounded), fall back to whatever is available
+  const targetPassing = Math.min(Math.round(n * 0.6), passing.length);
+  const targetFailing = Math.min(n - targetPassing, failing.length);
+  const extra = n - targetPassing - targetFailing;
+
+  const selected = [
+    ...passing.slice(0, targetPassing + (extra > 0 ? Math.min(extra, passing.length - targetPassing) : 0)),
+    ...failing.slice(0, targetFailing),
+  ].slice(0, n);
+
+  if (selected.length === 0) throw new Error('No completed pipelines found on branch — check CIRCLECI_TOKEN and repo');
+  return selected;
 }
 
 function percentile(sorted: number[], p: number): number {
@@ -87,94 +109,83 @@ function buildSummary(commits: CommitResult[]): UC1Summary {
 }
 
 export async function runSidecarBenchmark(opts: SidecarRunOptions): Promise<UC1RunResult> {
-  const { repo, repoDir, benchmarkBranch, circleciToken } = opts;
+  const { repo, repoDir, circleciToken } = opts;
+  const ciRepo = opts.ciRepo ?? repo;
+  const n = opts.n ?? 5;
+  const branch = opts.branch ?? 'main';
 
-  let commitList: Array<{ sha: string; message: string }>;
-  if (opts.commits && opts.commits.length > 0) {
-    commitList = await Promise.all(
-      opts.commits.map(async (sha) => {
-        const { stdout } = await execFileAsync('git', ['log', '-1', '--format=%s', sha], { cwd: repoDir });
-        return { sha, message: stdout.trim() };
-      })
-    );
-  } else {
-    const branch = opts.branch ?? 'main';
-    const n = opts.n ?? 5;
-    commitList = await getCommits(repoDir, branch, n);
+  // ── Ensure upstream commits are locally available ─────────────────────────
+  if (opts.ciRepo && opts.ciRepo !== repo) {
+    console.log(`Fetching ${opts.ciRepo} commits into local repo…`);
+    await execFileAsync('git', ['fetch', 'upstream', branch, '--depth=100'], { cwd: repoDir }).catch(() => {
+      console.log('  (upstream remote not found — commits must already be local)');
+    });
   }
 
-  emitBenchEvent({ type: 'run:start', total: commitList.length, repo });
-  console.log(`Running benchmark on ${commitList.length} commits...`);
+  // ── Pre-flight: verify sidecar before touching CI at all ──────────────────
+  const sidecarId = resolveSidecarId(repoDir);
+  console.log(`Verifying sidecar ${sidecarId}…`);
+  await verifySidecar(repoDir, sidecarId);
+  console.log('Sidecar OK.\n');
 
-  // Ensure we start from the tip of the branch (the chunk sync baseline).
-  // We revert each commit ON TOP of HEAD so the bundle always moves forward —
-  // chunk cannot sync backwards in history.
-  const branch = opts.branch ?? 'main';
+  // ── Select commits from CircleCI history ──────────────────────────────────
+  console.log(`Selecting ${n} commits from ${ciRepo}/${branch} history…`);
+  const candidates = await selectCommits(ciRepo, branch, circleciToken, n, opts.commits);
+  console.log(`Selected ${candidates.length} commits:`);
+  for (const c of candidates) {
+    console.log(`  ${c.sha.slice(0, 8)} — CI: ${c.ciStatus} in ${(c.ciDurationMs / 1000).toFixed(0)}s`);
+  }
+  console.log();
+
+  emitBenchEvent({ type: 'run:start', total: candidates.length, repo });
+
+  // ── Phase 1: sidecar — run all commits, fail fast on error ────────────────
+  console.log('── Phase 1: sidecar ──────────────────────────────────────────');
+  const sidecarResults: CommitResult['sidecar'][] = [];
+
+  for (let i = 0; i < candidates.length; i++) {
+    const commit = candidates[i];
+    console.log(`\n→ sidecar ${i + 1}/${candidates.length}  ${commit.sha.slice(0, 8)}`);
+    emitBenchEvent({ type: 'commit:start', sha: commit.sha, message: commit.message, index: i });
+
+    // Checkout this exact commit so the sidecar sees the right code
+    await execFileAsync('git', ['checkout', commit.sha], { cwd: repoDir });
+
+    const result = await runChunkValidation(repoDir, sidecarId);
+    emitBenchEvent({ type: 'commit:sidecar', sha: commit.sha, durationMs: result.durationMs, status: result.status });
+    sidecarResults.push(result);
+
+    if (result.status === 'error') {
+      console.warn(`  [sidecar] warning: error on ${commit.sha.slice(0, 8)}, skipping commit and continuing`);
+    }
+
+    console.log(`  sidecar: ${result.status} in ${(result.durationMs / 1000).toFixed(1)}s`);
+  }
+
+  // Restore branch after sidecar phase
   await execFileAsync('git', ['checkout', branch], { cwd: repoDir });
 
+  // ── Phase 2: traditional — look up historical CI durations ────────────────
+  console.log('\n── Phase 2: traditional CI (historical lookup) ───────────────');
   const results: CommitResult[] = [];
-  const benchEnv = {
-    ...process.env,
-    GIT_AUTHOR_NAME: 'bench', GIT_AUTHOR_EMAIL: 'bench@bench',
-    GIT_COMMITTER_NAME: 'bench', GIT_COMMITTER_EMAIL: 'bench@bench',
-  };
 
-  for (const commit of commitList) {
-    console.log(`\n→ ${commit.sha.slice(0, 7)} ${commit.message.slice(0, 60)}`);
-    emitBenchEvent({ type: 'commit:start', sha: commit.sha, message: commit.message, index: results.length });
+  for (let i = 0; i < candidates.length; i++) {
+    const commit = candidates[i];
+    const sidecar = sidecarResults[i];
+    const traditional = {
+      pipelineId: commit.pipelineId,
+      durationMs: commit.ciDurationMs,
+      status: commit.ciStatus,
+    };
 
-    // Revert this commit to produce a new forward-moving commit on top of HEAD.
-    // After measuring, we revert-the-revert to restore the working branch.
-    let revertFailed = false;
-    try {
-      await execFileAsync('git', ['revert', '--no-edit', commit.sha], { cwd: repoDir, env: benchEnv });
-    } catch (err) {
-      revertFailed = true;
-      const reason = 'revert had conflicts';
-      console.log(`  skipping — ${reason}: ${String(err).split('\n')[0]}`);
-      emitBenchEvent({ type: 'commit:skip', sha: commit.sha, reason });
-      await execFileAsync('git', ['revert', '--abort'], { cwd: repoDir }).catch(() => {});
-    }
-
-    if (revertFailed) continue;
-
-    const appliedSha = (await execFileAsync('git', ['rev-parse', 'HEAD'], { cwd: repoDir })).stdout.trim();
-
-    // Launch both paths in parallel
-    const [sidecarResult, pipelineResult] = await Promise.all([
-      runChunkValidation(repoDir).then((r) => {
-        emitBenchEvent({ type: 'commit:sidecar', sha: commit.sha, durationMs: r.durationMs, status: r.status });
-        return r;
-      }),
-      pushAndMeasure(repoDir, appliedSha, benchmarkBranch, repo, circleciToken).then((r) => {
-        emitBenchEvent({ type: 'commit:traditional', sha: commit.sha, durationMs: r.durationMs, status: r.status });
-        return r;
-      }),
-    ]);
+    emitBenchEvent({ type: 'commit:traditional', sha: commit.sha, durationMs: traditional.durationMs, status: traditional.status });
 
     console.log(
-      `  sidecar: ${sidecarResult.status} in ${(sidecarResult.durationMs / 1000).toFixed(1)}s  |  ` +
-      `traditional: ${pipelineResult.status} in ${(pipelineResult.durationMs / 1000).toFixed(1)}s`
+      `  ${commit.sha.slice(0, 8)}  sidecar: ${sidecar.status} ${(sidecar.durationMs / 1000).toFixed(1)}s` +
+      `  |  CI: ${traditional.status} ${(traditional.durationMs / 1000).toFixed(1)}s`
     );
 
-    results.push({
-      sha: commit.sha,
-      message: commit.message,
-      sidecar: sidecarResult,
-      traditional: pipelineResult,
-    });
-
-    // Revert-the-revert to restore the branch for the next iteration
-    await execFileAsync('git', ['revert', '--no-edit', 'HEAD'], { cwd: repoDir, env: benchEnv });
-
-    if (sidecarResult.status === 'error') {
-      console.error(`\nStopping: sidecar errored on ${commit.sha.slice(0, 7)} — check chunk setup and try again.`);
-      break;
-    }
-    if (pipelineResult.status === 'error') {
-      console.error(`\nStopping: pipeline errored on ${commit.sha.slice(0, 7)} — check CIRCLECI_TOKEN and branch permissions.`);
-      break;
-    }
+    results.push({ sha: commit.sha, message: commit.message, sidecar, traditional });
   }
 
   const summary = buildSummary(results);
@@ -189,7 +200,7 @@ export async function runSidecarBenchmark(opts: SidecarRunOptions): Promise<UC1R
     runId: uuidv4(),
     timestamp: new Date().toISOString(),
     repo,
-    benchmarkBranch,
+    benchmarkBranch: opts.benchmarkBranch,
     commits: results,
     summary,
   };

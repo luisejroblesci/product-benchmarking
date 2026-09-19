@@ -24,23 +24,25 @@ program
   .command('sidecar')
   .description('Benchmark sidecar vs traditional CI pipeline speed')
   .requiredOption('--repo <org/repo>', 'Target repo, e.g. luisejroblesci/circleci-cli')
+  .option('--ci-repo <org/repo>', 'Upstream repo to pull historical CI data from (defaults to --repo)')
   .requiredOption('--repo-dir <path>', 'Local path to the cloned target repo')
   .option('--branch <branch>', 'Branch to pull commits from', 'main')
   .option('--n <number>', 'Number of commits to test', '5')
   .option('--commits <shas>', 'Comma-separated specific SHAs to test (overrides --branch/--n)')
   .option('--benchmark-branch <branch>', 'Dedicated branch for CI pushes', 'bench/sidecar-test')
   .option('--out <file>', 'Output JSON file', `results/uc1-run-${Date.now()}.json`)
-  .option('--ui', 'Start live dashboard at http://localhost:4321')
+  .option('--no-ui', 'Disable the live dashboard (enabled by default)')
   .action(async (opts) => {
     const circleciToken = requireEnv('CIRCLECI_TOKEN');
     let stopUI: (() => void) | undefined;
-    if (opts.ui) {
+    if (opts.ui !== false) {
       stopUI = startUIServer(4321);
       // Give the server a moment to start before the runner emits events
       await new Promise((r) => setTimeout(r, 500));
     }
     const result = await runSidecarBenchmark({
       repo: opts.repo,
+      ciRepo: opts.ciRepo,
       repoDir: path.resolve(opts.repoDir),
       branch: opts.branch,
       n: parseInt(opts.n, 10),
@@ -69,14 +71,21 @@ program
   .requiredOption('--suite <file>', 'Path to JSON prompt suite file')
   .option(
     '--tools <configs>',
-    'Comma-separated tool configs to test (cli,mcp-builtin,mcp-remote,api-v1,api-v2,all)',
-    'api-v2,all'
+    'Comma-separated tool configs to test (mcp-builtin,mcp-remote,all)',
+    'mcp-remote,mcp-builtin,all'
   )
   .option('--baseline <file>', 'Prior run JSON for delta comparison (optional)')
   .option('--out <file>', 'Output JSON file', `results/uc2-run-${Date.now()}.json`)
+  .option('--no-ui', 'Disable the live dashboard (enabled by default)')
   .action(async (opts) => {
     const circleciToken = requireEnv('CIRCLECI_TOKEN');
-    const anthropicApiKey = requireEnv('ANTHROPIC_API_KEY');
+
+    let stopUI: (() => void) | undefined;
+    if (opts.ui !== false) {
+      stopUI = startUIServer(4321);
+      await new Promise((r) => setTimeout(r, 500));
+      console.log(`UC2 live dashboard → http://localhost:4321/uc2\n`);
+    }
 
     const suite = loadJSON<PromptSuite>(opts.suite);
     const toolConfigs = (opts.tools as string)
@@ -88,21 +97,12 @@ program
       suite,
       toolConfigs,
       circleciToken,
-      anthropicApiKey,
+      outDir: path.dirname(opts.out),
     });
-
-    saveJSON(opts.out, result);
-    const csvPath = await exportUC2CSV(result, path.dirname(opts.out));
-    const reportPath = opts.out.replace('.json', '.html');
-    saveReport(generateUC2Report(result, `Skills Benchmark — ${suite.suite}`), reportPath);
-
-    console.log(`\nResults saved:`);
-    console.log(`  JSON:   ${opts.out}`);
-    console.log(`  CSV:    ${csvPath}`);
-    console.log(`  Report: ${reportPath}`);
 
     const s = result.crossConfigSummary;
     console.log(`\nFastest: ${s.fastestConfig}  |  Lowest tokens: ${s.lowestTokenConfig}  |  Fewest turns: ${s.fewestTurnsConfig}`);
+    stopUI?.();
   });
 
 // Generate report from existing run files
