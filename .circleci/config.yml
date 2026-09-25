@@ -1,40 +1,50 @@
 version: 2.1
 
 parameters:
-  suite:
+  models:
     type: string
-    default: "suites/example.json"
-  tools:
+    default: ""          # comma-separated model ids from bench.config.json; empty = all enabled
+  conditions:
     type: string
-    default: "api-v2,all"
+    default: "cli+skills,cli,mcp+skills,mcp"
+  cases:
+    type: string
+    default: ""          # empty = every case in the suite
+  reps:
+    type: integer
+    default: 3
 
 jobs:
-  skills-benchmark:
+  usecases-benchmark:
     docker:
       - image: cimg/node:22.0
+    resource_class: medium
     steps:
       - checkout
+      - run:
+          name: Install circleci CLI
+          command: |
+            curl -1sLf 'https://packages.circleci.com/public/setup.deb.sh' | sudo -E bash
+            sudo apt-get install -y circleci
+            circleci version
       - run:
           name: Install dependencies
           command: npm ci
       - run:
-          name: Run skills benchmark
+          name: Run use-cases benchmark
+          no_output_timeout: 60m
           command: |
-            npx tsx src/cli.ts skills \
-              --suite << pipeline.parameters.suite >> \
-              --tools << pipeline.parameters.tools >> \
-              --out results/uc2-run-${CIRCLE_BUILD_NUM}.json
-          environment:
-            CIRCLECI_TOKEN: $CIRCLECI_TOKEN
-            ANTHROPIC_API_KEY: $ANTHROPIC_API_KEY
+            args=(--reps << pipeline.parameters.reps >> --conditions "<< pipeline.parameters.conditions >>" --no-ui)
+            [ -n "<< pipeline.parameters.models >>" ] && args+=(--models "<< pipeline.parameters.models >>")
+            [ -n "<< pipeline.parameters.cases >>" ] && args+=(--cases "<< pipeline.parameters.cases >>")
+            npx tsx src/cli.ts usecases "${args[@]}"
+          # Provider keys (ANTHROPIC_API_KEY, OPENAI_API_KEY, GOOGLE_GENERATIVE_AI_API_KEY, OPENROUTER_API_KEY)
+          # and CIRCLECI_TOKEN come from project env vars or a context.
       - store_artifacts:
-          path: results
+          path: benchmarks/uc2
           destination: benchmark-results
-      - store_artifacts:
-          path: reports
-          destination: benchmark-reports
 
 workflows:
   benchmark:
     jobs:
-      - skills-benchmark
+      - usecases-benchmark

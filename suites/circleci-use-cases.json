@@ -1,0 +1,136 @@
+{
+  "suite": "circleci-use-cases",
+  "description": "Core CircleCI developer workflows — diagnosis, optimization, monitoring, and debugging",
+  "cases": [
+    {
+      "id": "diagnose-failed-build",
+      "prompt": "Why did my last build on the main branch fail?",
+      "tags": ["pipeline", "status", "logs", "failures"],
+      "expected": "Identifies the most recent failed run on main for the target project, names the failing workflow/job, quotes the relevant error from the job logs or test results, and explains the likely root cause with a suggested fix. If the latest main run did not fail, says so and points to the most recent failure instead.",
+      "rubric": [
+        "Identifies the specific most recent failed run/workflow on the main branch of the target project (by number, ID, or commit) as shown in the tool output.",
+        "Names the failing job(s) and cites the actual error message, failing step, or failing test taken from job logs or test results in the trace.",
+        "Gives a root-cause explanation consistent with that evidence, not a generic list of possible causes.",
+        "Suggests a concrete fix or next debugging step tied to the error.",
+        "Does not invent job names, errors, or log lines absent from the trace; if main's latest build passed or no failure exists, states that plainly."
+      ]
+    },
+    {
+      "id": "find-flaky-tests",
+      "prompt": "Which tests in my project have been flaky over the past 30 days?",
+      "tags": ["tests", "flaky", "history"],
+      "expected": "Examines test results across multiple recent runs/jobs in the target project and names tests that both passed and failed on the same code, or states clearly that no flaky tests were found and what was checked.",
+      "rubric": [
+        "Inspects test results from more than one recent run or job of the target project (not a single run) as the basis for the flakiness judgement.",
+        "Names specific tests (test name/class/file) that show inconsistent pass/fail outcomes, with evidence such as which runs/jobs they failed and passed in.",
+        "Distinguishes flaky (intermittent) failures from consistently failing tests.",
+        "If no flaky tests or no test results exist in the data, says so honestly and states the scope checked (runs, branches, time window) instead of fabricating test names.",
+        "Suggests a practical next step (e.g. quarantine, rerun, investigate a specific test)."
+      ]
+    },
+    {
+      "id": "monitor-pipeline-status",
+      "prompt": "Show me the current pipeline status for all my followed projects.",
+      "tags": ["pipeline", "status", "projects"],
+      "expected": "Reports the latest run/workflow status (e.g. success, failed, running) for the user's project(s), at minimum the target project, with branch and timestamp, highlighting anything failing or in progress.",
+      "rubric": [
+        "Reports the status of the most recent run(s)/workflow(s) for at least the target project, using values from the tool output.",
+        "Includes identifying details for each status (branch, run/pipeline number or ID, workflow name, and/or time).",
+        "Clearly highlights failing or currently running items versus successful ones.",
+        "If the tools cannot enumerate all followed projects, says so and explains what was covered rather than inventing other projects.",
+        "Presents the result in a concise, scannable format (list or table)."
+      ]
+    },
+    {
+      "id": "optimize-resource-usage",
+      "prompt": "Are any of my jobs using larger resource classes than they need?",
+      "tags": ["usage", "resource-class", "cost"],
+      "expected": "Identifies the jobs in the target project and their resource classes and durations (from job details or usage data), and flags any that look over-provisioned or explains that none are, with concrete recommendations.",
+      "rubric": [
+        "Identifies actual jobs from the target project and their resource class (or executor size) using job details, config, or usage data from the trace.",
+        "Uses real evidence such as job durations, parallelism, or usage/credits data to judge whether each class is appropriate.",
+        "Makes specific recommendations (e.g. move job X from large to medium) or explains with evidence why current sizing is fine.",
+        "Acknowledges limits of the available data (e.g. no CPU/memory utilization metrics) instead of claiming utilization figures not in the trace.",
+        "Does not fabricate job names, resource classes, or cost numbers."
+      ]
+    },
+    {
+      "id": "rerun-failed-workflow",
+      "prompt": "Rerun just the failed jobs in my latest workflow.",
+      "tags": ["workflow", "rerun", "jobs"],
+      "expected": "Finds the latest workflow in the target project, determines whether it has failed jobs, and either reruns it from failed (reporting the new workflow/run ID) or, if not appropriate or not permitted, clearly states the exact workflow and the command/tool call that would rerun only the failed jobs. If the latest workflow has no failed jobs, says so.",
+      "rubric": [
+        "Correctly identifies the latest workflow of the target project (name and ID/number) from the tool output.",
+        "Correctly determines whether that workflow has failed jobs and names them if so.",
+        "Either performs a rerun-from-failed on that workflow and reports the result (new workflow/run ID or confirmation), or clearly proposes the exact rerun-from-failed command or tool call for that specific workflow; both are acceptable.",
+        "Does not rerun the entire workflow when only failed jobs were requested, and does not rerun or cancel an unrelated workflow.",
+        "If the latest workflow succeeded or has no failed jobs, says so rather than rerunning anything, and does not claim a rerun happened when the trace does not show one."
+      ]
+    },
+    {
+      "id": "retrieve-build-artifacts",
+      "prompt": "Download the test coverage report from my last successful build.",
+      "tags": ["artifacts", "download"],
+      "expected": "Locates the most recent successful run in the target project, lists its jobs' artifacts, and provides the path/URL of the coverage report (or downloads it), or clearly states that no coverage artifact exists and lists what artifacts were found.",
+      "rubric": [
+        "Identifies the most recent successful run/workflow/job of the target project from the tool output.",
+        "Lists or inspects the artifacts of the relevant job(s) using real artifact data from the trace.",
+        "Provides the specific coverage artifact path and download URL (or confirms it was downloaded), or clearly states that no coverage report artifact exists and names the artifacts that do exist.",
+        "Does not fabricate artifact names or URLs.",
+        "If no coverage report exists, gives a brief actionable suggestion (e.g. add store_artifacts for the coverage output)."
+      ]
+    },
+    {
+      "id": "audit-recent-deployments",
+      "prompt": "What deployments went out to production this week and who triggered them?",
+      "tags": ["deployments", "history", "audit"],
+      "expected": "Examines the target project's runs/workflows from the past week, identifies any deploy/production workflows or jobs, and lists each with time, status, and triggering actor; or states clearly that no production deployments were found in that window and what was checked.",
+      "rubric": [
+        "Examines runs/workflows of the target project within roughly the last 7 days, using timestamps from the tool output.",
+        "Identifies which runs/workflows/jobs or deploy-tracking records are deployments to production (e.g. by workflow/job name or deployment environment) and explains how that was determined.",
+        "For each deployment, reports when it ran, its status, and who or what triggered it (actor/trigger info from the data).",
+        "If no production deployments exist in that window, says so clearly and describes what was checked instead of inventing deployments.",
+        "Does not fabricate usernames, timestamps, or deploy targets."
+      ]
+    },
+    {
+      "id": "debug-slow-pipeline",
+      "prompt": "Which jobs in my pipeline are taking the longest and why?",
+      "tags": ["pipeline", "performance", "duration"],
+      "expected": "Ranks the jobs of recent runs in the target project by duration using actual timings, and explains the main contributors (slow steps, dependency installs, lack of caching, serial workflow structure, queueing), with concrete optimization suggestions.",
+      "rubric": [
+        "Lists the slowest jobs in recent runs of the target project with actual durations taken from the tool output.",
+        "Explains why they are slow using evidence (step timings, log content, config, workflow dependencies, queue time), not just generic speculation.",
+        "Gives specific optimizations tied to the identified jobs (e.g. caching, parallelism, splitting tests, resource class, removing serial dependencies).",
+        "Distinguishes measured facts from hypotheses where the data is incomplete.",
+        "Does not fabricate durations or step names."
+      ]
+    },
+    {
+      "id": "validate-config",
+      "prompt": "Can you check if my CircleCI config is valid and suggest improvements?",
+      "tags": ["config", "validate", "best-practices"],
+      "expected": "Obtains the target project's CircleCI config (or its compiled form / job and workflow structure from recent runs), states whether it is valid (via validation or evidence that it compiles and runs), and gives specific, config-grounded improvement suggestions.",
+      "rubric": [
+        "States whether the config is valid, based on an actual validation result or on concrete evidence (e.g. recent runs compile and execute) from the trace, rather than assuming.",
+        "Refers to the target project's actual jobs, workflows, executors, or orbs as seen in the trace.",
+        "Gives specific improvement suggestions (e.g. caching, orb versions, workflow parallelism, resource classes, test splitting) tied to that config.",
+        "If the config file itself could not be retrieved, says so plainly and explains what evidence was used instead.",
+        "Does not invent config contents that are not supported by the trace."
+      ]
+    },
+    {
+      "id": "compare-test-results-branches",
+      "prompt": "Did my feature branch introduce any new test failures compared to main?",
+      "tags": ["tests", "branches", "regressions"],
+      "expected": "Identifies the relevant feature branch (or asks/states which branch was assumed), compares test results of its latest run against the latest main run, and lists tests failing on the branch but passing on main, or states that there are none.",
+      "rubric": [
+        "Identifies a specific non-main branch of the target project (from runs in the data) and the runs compared on both it and main, stating any assumption about which branch is 'the feature branch'.",
+        "Compares test results (or job outcomes when test results are unavailable) between the branch run and the main run using data from the trace.",
+        "Lists specific tests or jobs that fail on the branch but pass on main, or states clearly that no new failures were found.",
+        "Distinguishes new regressions from failures that also exist on main.",
+        "Does not fabricate test names, branches, or results; if no feature branch runs exist, says so."
+      ]
+    }
+  ]
+}

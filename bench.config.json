@@ -1,0 +1,27 @@
+{
+  "models": [
+    { "id": "opus-5-5",  "provider": "anthropic", "model": "claude-opus-5-5",  "apiKeyEnv": "ANTHROPIC_API_KEY", "maxConcurrent": 4 },
+    { "id": "sonnet-5",  "provider": "anthropic", "model": "claude-sonnet-5",  "apiKeyEnv": "ANTHROPIC_API_KEY", "maxConcurrent": 4 },
+    { "id": "haiku-4-5", "provider": "anthropic", "model": "claude-haiku-4-5", "apiKeyEnv": "ANTHROPIC_API_KEY", "maxConcurrent": 4 },
+    { "id": "openai-example", "enabled": false, "provider": "openai", "model": "REPLACE_WITH_OPENAI_MODEL", "apiKeyEnv": "OPENAI_API_KEY" },
+    { "id": "gemini-example", "enabled": false, "provider": "google", "model": "REPLACE_WITH_GEMINI_MODEL", "apiKeyEnv": "GOOGLE_GENERATIVE_AI_API_KEY" },
+    { "id": "openrouter-example", "enabled": false, "provider": "openai-compatible", "baseURL": "https://openrouter.ai/api/v1", "model": "REPLACE/ME", "apiKeyEnv": "OPENROUTER_API_KEY" }
+  ],
+  "judge": { "provider": "anthropic", "model": "claude-opus-5-5", "apiKeyEnv": "ANTHROPIC_API_KEY" },
+  "conditions": ["cli+skills", "cli", "mcp+skills", "mcp"],
+  "repetitions": 3,
+  "maxTurns": 25,
+  "concurrency": 8,
+  "sessionTimeoutMs": 300000,
+  "toolTimeoutMs": 60000,
+  "circuitBreakerThreshold": 5,
+  "skills": { "repo": "CircleCI-Public/skills", "ref": "056e2b1dee02bc3a58784e168e82d82637284839", "path": "plugins/circleci/skills" },
+  "mcp": { "url": "https://mcp.circleci.com/v1/mcp", "tokenEnv": "CIRCLECI_TOKEN" },
+  "cli": { "binary": "circleci", "tokenEnv": "CIRCLECI_TOKEN" },
+  "target": { "projectSlug": "gh/luisejroblesci/circleci-cli", "orgSlug": "gh/luisejroblesci", "repo": "luisejroblesci/circleci-cli", "ref": "main" },
+  "pricing": {
+    "claude-opus-5-5":  { "inPerMTok": 4, "outPerMTok": 20, "cacheReadPerMTok": 0.2, "cacheWritePerMTok": 5 },
+    "claude-sonnet-5":  { "inPerMTok": 2, "outPerMTok": 10, "cacheReadPerMTok": 0.2, "cacheWritePerMTok": 2.5 },
+    "claude-haiku-4-5": { "inPerMTok": 1, "outPerMTok": 5,  "cacheReadPerMTok": 0.1, "cacheWritePerMTok": 1.25 }
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "runId": "cadbb86c-e3d4-4739-ac36-21f187cff4ec",
+  "generatedAt": "2026-09-24T15:49:00.035Z",
+  "cells": [
+    {
+      "model": "haiku-4-5",
+      "condition": "cli+skills",
+      "sessions": 2,
+      "completed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.5,
+      "meanScore": 2.5,
+      "errorRate": 0,
+      "avgTurns": 6.5,
+      "avgTotalTokens": 33595.5,
+      "totalCostUsd": 0.077951,
+      "p50DurationMs": 29793,
+      "p90DurationMs": 30983.4,
+      "avgToolCalls": 5,
+      "avgToolErrors": 1.5
+    },
+    {
+      "model": "haiku-4-5",
+      "condition": "cli",
+      "sessions": 2,
+      "completed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 3,
+      "errorRate": 0,
+      "avgTurns": 9,
+      "avgTotalTokens": 78217.5,
+      "totalCostUsd": 0.166159,
+      "p50DurationMs": 28877,
+      "p90DurationMs": 38439.4,
+      "avgToolCalls": 9,
+      "avgToolErrors": 2.5
+    },
+    {
+      "model": "haiku-4-5",
+      "condition": "mcp+skills",
+      "sessions": 2,
+      "completed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 3.5,
+      "errorRate": 0,
+      "avgTurns": 5,
+      "avgTotalTokens": 78522.5,
+      "totalCostUsd": 0.176041,
+      "p50DurationMs": 31959,
+      "p90DurationMs": 37351.8,
+      "avgToolCalls": 5,
+      "avgToolErrors": 0
+    },
+    {
+      "model": "haiku-4-5",
+      "condition": "mcp",
+      "sessions": 2,
+      "completed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 3.5,
+      "errorRate": 0,
+      "avgTurns": 4.5,
+      "avgTotalTokens": 63106,
+      "totalCostUsd": 0.143588,
+      "p50DurationMs": 38027.5,
+      "p90DurationMs": 46776.7,
+      "avgToolCalls": 5,
+      "avgToolErrors": 0
+    }
+  ],
+  "byCase": [
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 15,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 3,
+      "unfinished": 0
+    }
+  ],
+  "skillsDelta": [
+    {
+      "model": "haiku-4-5",
+      "surface": "cli",
+      "passRateDelta": -0.5,
+      "meanScoreDelta": -0.5,
+      "tokensDelta": -44622
+    },
+    {
+      "model": "haiku-4-5",
+      "surface": "mcp",
+      "passRateDelta": 0,
+      "meanScoreDelta": 0,
+      "tokensDelta": 15416.5
+    }
+  ]
+}

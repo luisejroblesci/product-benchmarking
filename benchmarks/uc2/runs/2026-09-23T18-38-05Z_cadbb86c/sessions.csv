@@ -1,0 +1,327 @@
+runId,model,provider,providerModel,condition,caseId,rep,status,errorKind,errorMessage,score,pass,turns,inputTokens,outputTokens,cacheReadTokens,cacheWriteTokens,reasoningTokens,totalTokens,costUsd,durationMs,modelTimeMs,toolTimeMs,toolCallCount,toolErrors,distinctTools,firstToolTurn,skillsLoaded,retries,startedAt,endedAt,transcriptPath,judgeReasoning,finalAnswer
+cadbb86c-e3d4-4739-ac36-21f187cff4ec,haiku-4-5,anthropic,claude-haiku-4-5,mcp+skills,diagnose-failed-build,1,completed,,,3,true,6,94119,1093,0,0,0,95212,0.099584,25218,12525,2753,8,0,list_runs;get_run;list_run_workflows;list_workflow_jobs;get_job;get_job_logs,1,,0,2026-09-23T18:38:06.594Z,2026-09-23T18:38:31.812Z,transcripts/haiku-4-5/mcp+skills/diagnose-failed-build.r1.jsonl,"The trace supports the failing job names `deploy` and `docs-publish`, and shows that logs were fetched for the relevant steps. The answer gives a coherent root cause: a read-only deploy key blocking git push, tag creation and the gh-pages push. It also offers a concrete fix (a write-enabled key). However, it never names the specific run (a37638ad…), workflow or commit, which misses rubric criterion 1. The quoted error text, tag `v1.0.116` and task names cannot be verified from the condensed trace, which weakens grounding. The closing generic remark adds nothing. Overall the answer is useful and likely correct, but has gaps in identification and grounding.","## Summary
+
+Your last build on the main branch failed because of **authentication issues with your git credentials**. Here's what happened:
+
+**Two jobs failed:**
+
+1. **`deploy` job** - Failed when trying to run `task ci:release`
+   - The job attempted to create and push a git tag (`v1.0.116`) to the repository
+   - Error: `ERROR: The key you are authenticating with has been marked as read only.`
+   - The deploy key being used can only read from the repo, not write to it
+
+2. **`docs-publish` job** - Failed when trying to run `task ci:docs:publish`
+   - The job attempted to push documentation changes to the `gh-pages` branch
+   - Same error: `ERROR: The key you are authenticating with has been marked as read only.`
+   - The authentication key used in the CircleCI environment has read-only permissions
+
+**Root Cause:** Your CircleCI project is configured with a read-only deployment key, but your pipeline is trying to **write** to the repository (creating git tags and pushing to branches). This requires a key with write permissions.
+
+**To fix this:**
+- You'll need to configure CircleCI with a deploy key that has write permissions, or
+- Update the SSH key used by your CircleCI project in your GitHub settings to one that has write access to the repository
+
+This is a common issue when setting up automated deployments and documentation publishing in CI/CD pipelines."
+cadbb86c-e3d4-4739-ac36-21f187cff4ec,haiku-4-5,anthropic,claude-haiku-4-5,mcp,diagnose-failed-build,1,completed,,,3,true,6,85049,1065,0,0,0,86114,0.090374,27091,14481,2693,8,0,list_runs;get_run;list_run_workflows;list_workflow_jobs;get_job;get_job_logs,1,,0,2026-09-23T18:38:06.912Z,2026-09-23T18:38:34.003Z,transcripts/haiku-4-5/mcp/diagnose-failed-build.r1.jsonl,"The trace supports the job names `docs-publish` and `deploy`, and shows the agent fetched logs for the specific steps it cites. That makes the error claims plausible. However, the condensed trace does not show the quoted 'read only' key error, the exit code 201, the step names or the tag v1.0.186, so these specifics are only weakly grounded. The trace also shows only 'ended', not an explicit failed status. The answer never identifies the run (ID a37638ad… or pipeline number) or the workflow, so criterion 1 is missed. The root cause is coherent and tied to a specific error rather than generic. The fix is reasonable: use a deploy key or token with write access. It could be more concrete, for example adding a read-write deploy key via add_ssh_keys fingerprints.","## Summary
+
+Your last build on the main branch failed due to **authentication issues with git push operations**. Both failed jobs encountered the same problem:
+
+### Failed Jobs:
+
+1. **`docs-publish`** - Failed at step ""Publish to gh-pages"" (exit code 201)
+   - **Error**: `ERROR: The key you are authenticating with has been marked as read only.`
+   - The job attempted to push updated documentation to the `gh-pages` branch but the SSH key being used is read-only and cannot perform push operations.
+
+2. **`deploy`** - Failed at step ""task ci:release"" (exit code 201)
+   - **Error**: `ERROR: The key you are authenticating with has been marked as read only.`
+   - The job tried to push a git tag (`v1.0.186`) to the repository but encountered the same authentication issue.
+
+### Root Cause:
+The CircleCI job is using a read-only SSH key to authenticate with GitHub. Both operations require write access:
+- Pushing documentation changes to the gh-pages branch
+- Pushing release tags to the repository
+
+You'll need to configure a deploy key or use a personal access token with write permissions for these operations to succeed."
+cadbb86c-e3d4-4739-ac36-21f187cff4ec,haiku-4-5,anthropic,claude-haiku-4-5,cli+skills,diagnose-failed-build,1,completed,,,2,false,9,40598,1228,0,0,0,41826,0.046738,28305,15501,3902,8,3,circleci,1,,0,2026-09-23T18:38:06.048Z,2026-09-23T18:38:34.353Z,transcripts/haiku-4-5/cli+skills/diagnose-failed-build.r1.jsonl,"The answer never identifies a main-branch build. It inspected only the newest failed run (bench/sidecar-test) and did not check whether main's latest build passed or failed. That fails criterion 1, though it honestly flags the branch mismatch. It names the failing job test-linux and the step `task ci:test`. The exit code 201 and step list likely come from the truncated job get output, but cannot be verified. No actual error message or failing test is cited, so criterion 2 is only partly met. There is no root-cause explanation (criterion 3), and the next step is just 'check the web UI' (criterion 4). It also wrongly says the CLI cannot show logs, even though `job output` appeared as an available command in the trace. It partially addresses the question with honest caveats but misses the core ask.","Based on the information I've gathered, here's what I found:
+
+## Build Failure Summary
+
+**Note:** The most recent failed build is actually on the **`bench/sidecar-test` branch**, not the main branch. If you have a more recent failure on main, please let me know.
+
+**Failed Job:** `test-linux`
+- **Run ID:** 6eed8b92-c489-4dc4-bbab-5f386719c5aa
+- **Branch:** bench/sidecar-test
+- **Commit:** ""bench run 1/5"" (8f60565)
+- **Duration:** 1m50s
+
+**Root Cause:** The `task ci:test` command failed with exit code 201. This step was responsible for running the test suite.
+
+The job completed several setup steps successfully:
+- ✅ Set up Go environment
+- ✅ Restored caches (Go modules, Go build, golangci-lint)
+- ✅ Installed go-task
+- ❌ **Failed:** Running `task ci:test` command
+
+Unfortunately, the CLI tool doesn't provide a way to access the full detailed logs of the failed test step directly through the command line. To see the exact error output, you would need to visit the CircleCI web UI at:
+
+https://app.circleci.com/workflow/5ee08685-4447-47d7-b5eb-6ca769589fc9/job/890266d0-2cec-462f-b67b-3271292f5c01
+
+Would you like me to help investigate this further, or do you want to check if there's a different failed build on the main branch?"
+cadbb86c-e3d4-4739-ac36-21f187cff4ec,haiku-4-5,anthropic,claude-haiku-4-5,cli,diagnose-failed-build,1,completed,,,3,true,15,146725,1592,0,0,0,148317,0.154685,40830,24401,4876,14,5,circleci,1,,0,2026-09-23T18:38:06.326Z,2026-09-23T18:38:47.156Z,transcripts/haiku-4-5/cli/diagnose-failed-build.r1.jsonl,"The answer correctly identifies the failed `ci` workflow (5ee08685), the failing job `test-linux`, and step 109 `task ci:test`. The specific test name, error line, and 2,481/2,480 counts are not visible in the condensed trace. However, they plausibly come from the truncated 263KB log output, so they are not clearly fabricated. There are three gaps. First, the agent never confirmed the workflow was on the main branch: the `--branch` flag failed and the workflow list was unfiltered. Second, the answer omits the workflow or run ID and the commit. Third, the fix is weak: it offers only a generic 'typically a file permission issue' explanation, with no concrete remediation or next debugging step such as checking the tmp mount's noexec setting or rerunning the test. The answer is mostly useful and grounded but has these gaps.","Perfect! Now I have the detailed information about why the build failed. Let me provide you with a clear answer.
+
+## Your Last Main Branch Build Failed Due to This Error:
+
+**Build Details:**
+- **Workflow:** ci
+- **Failed Job:** test-linux
+- **Date:** 2026-09-18
+- **Failed Step:** Step 109 - `task ci:test` (Exit Code: 201)
+
+**Root Cause:**
+The test suite encountered **1 failure** in the acceptance tests:
+
+**Failed Test:** `TestContextRestrictionCreate_Color`
+
+**Error Message:**
+```
+context_test.go:1149: assertion failed: error is not nil: fork/exec /tmp/circleci-cli-test-3342121767/circleci: operation not permitted
+```
+
+**What Happened:**
+The test tried to execute a compiled CLI binary located at `/tmp/circleci-cli-test-3342121767/circleci`, but received an ""operation not permitted"" error. This is typically a file permission issue where the test binary doesn't have execute permissions or cannot be executed in the current environment.
+
+**Summary:** 
+Out of 2,481 tests that ran, 2,480 passed successfully, but 1 test failed due to a permission issue when trying to fork/exec the CLI binary during the acceptance test. This caused the entire test-linux job to fail with exit code 201."
+cadbb86c-e3d4-4739-ac36-21f187cff4ec,haiku-4-5,anthropic,claude-haiku-4-5,cli,validate-config,1,completed,,,3,true,3,7279,839,0,0,0,8118,0.011474,16924,9611,551,4,0,list_files;read_file;circleci,1,,0,2026-09-23T18:38:34.003Z,2026-09-23T18:38:50.927Z,transcripts/haiku-4-5/cli/validate-config.r1.jsonl,"The answer correctly reports that the config is valid, citing the actual `circleci config validate` result (exit code 0). It references real items from the config, such as the `setup`, `install-go` and `install-task` commands and test-suites.yml. Other details like `setup-docker`, the contexts and `ok-to-deploy` likely come from the truncated part of the file the agent read, so they are plausible. The suggestions are weak, though. The 'add explicit Go version pinning via version file' advice contradicts the visible config, which already uses `--version-file go.mod`. The gh-pages regex suggestion adds little. Timeouts, error handling and comments are generic best-practice filler rather than analysis of this config. There is no substantive caching, resource-class or parallelism analysis. The answer is grounded on validity but uneven and partly inaccurate on improvements.","Great! I've validated your CircleCI config. Here are my findings:
+
+## ✅ Validation Result
+**Your CircleCI config is valid!** No syntax errors detected.
+
+## 📋 Analysis & Improvement Suggestions
+
+Your configuration is well-structured and follows CircleCI best practices. Here are some observations and suggestions:
+
+### Strengths:
+1. **Good use of reusable commands** - `setup`, `install-go`, `install-task`, `setup-docker` are well-organized
+2. **Multi-platform testing** - You're testing across Linux, macOS, and Windows, which is excellent
+3. **Clear job organization** - Logical separation of concerns (check, test, deploy, docs, smoke-tests)
+4. **Proper filtering** - Excluding `gh-pages` branch from CI runs
+5. **Matrix testing** - Efficiently testing multiple executors
+6. **Artifact storage** - Properly storing test results and build artifacts
+
+### Suggested Improvements:
+
+1. **Add explicit Go version pinning** - Consider adding a version file reference for consistency across environments
+
+2. **Docker build caching** - The `setup-docker` job pulls QEMU and creates buildx each time. Consider caching or persisting these between runs if applicable.
+
+3. **Test result storage** - Consider using `store_test_results` in more jobs to aggregate test metrics in the CircleCI UI
+
+4. **Conditional Docker login** - Good that you already check for credentials, but consider adding more explicit error handling
+
+5. **Branch filtering optimization** - You could consider using a regex pattern for branch filtering to reduce repetition:
+   ```yaml
+   filters:
+     branches:
+       ignore: /^(gh-pages)$/
+   ```
+
+6. **Documentation** - Consider adding comments to the workflow section explaining the deployment flow (mark-release → deploy → smoke-tests)
+
+7. **Timeout configuration** - Consider adding explicit timeouts to long-running jobs (like `docs:build`, `deploy`) to prevent runaway builds
+
+8. **Environment context security** - Your `devex-release` and `macos-codesigning` contexts look good, but ensure only necessary secrets are stored there
+
+### Minor Notes:
+- Your `test-suites.yml` appears to be used with `circleci run` commands for test discovery - ensure it's being utilized properly by your task commands
+- The `ok-to-deploy` job uses `type: no-op` which is correct for a gate job
+
+Overall, your configuration demonstrates solid CircleCI knowledge and is production-ready! 🎉"
+cadbb86c-e3d4-4739-ac36-21f187cff4ec,haiku-4-5,anthropic,claude-haiku-4-5,cli+skills,validate-config,1,completed,,,3,true,4,23903,1462,0,0,0,25365,0.031213,31281,17132,508,2,0,read_file;circleci;load_skill;read_skill_file,1,circleci-config,0,2026-09-23T18:38:31.812Z,2026-09-23T18:39:03.093Z,transcripts/haiku-4-5/cli+skills/validate-config.r1.jsonl,"The answer correctly reports that the config is valid, citing the actual `circleci config validate` result, and it quotes the real `install-go` checksum from the file. Many other details (contexts, `ok-to-deploy`, serial-group, docs workspace) fall beyond the truncated trace but plausibly come from the full file read. The suggestions are mostly low-impact: a cache-key prefix, adding comments, and 'review' points. It skips higher-value options such as resource classes, test splitting or parallelism. There is also an internal contradiction. Suggestion #4 says `deploy` is gated to main only and the smoke-test filters are redundant. Suggestion #5 says `deploy` runs as a dry-run on non-main branches. If #5 is right, removing the smoke-test filter in #4 would change behavior, so that advice is potentially harmful. Grounded overall, but weak and partly inconsistent suggestions.","## Summary
+
+**✅ Your config is valid!** Here are my findings and improvement suggestions:
+
+### **Strengths**
+1. **Good structure** — Clean separation of commands, executors, jobs, and workflows
+2. **Smart matrix testing** — Testing across multiple platforms (Linux, macOS, Windows) using parameterized jobs
+3. **Release safety** — Proper deployment gating with `ok-to-deploy`, approval flow, and marker-based release tracking
+4. **Focused branch filters** — Correctly ignoring `gh-pages` from CI and gating deploys to `main` only
+5. **Environment isolation** — Using contexts for sensitive operations (`devex-release`, `macos-codesigning`)
+
+---
+
+### **Improvement Opportunities**
+
+#### 1. **Cache Key Optimization** ⚡
+Your `install-go` command has a complex cache checksum:
+```yaml
+--checksum '{{ checksum ""go.sum"" }}_{{ checksum ""clikit/go.sum"" }}_{{ checksum ""tools/go.sum"" }}'
+```
+
+**Suggestion:** Add a versioned prefix to allow intentional invalidation:
+```yaml
+--checksum 'v1_{{ checksum ""go.sum"" }}_{{ checksum ""clikit/go.sum"" }}_{{ checksum ""tools/go.sum"" }}'
+```
+This makes it easier to clear caches if tooling changes (e.g., go-releaser update, golangci-lint version bump).
+
+---
+
+#### 2. **Workspace Efficiency** 📦
+The `docs` job persists to workspace:
+```yaml
+persist_to_workspace:
+  root: .
+  paths:
+    - ""docs/website/public""
+```
+
+**Review point:** Verify that only `docs-publish` consumes this. If so, consider whether a direct artifact upload + subsequent checkout would be simpler for a one-off publish. If the workspace is lightweight (just the built site), keep it as-is—it's fine.
+
+---
+
+#### 3. **Deployment Flow Clarity** 🚀
+The release setup is sophisticated but could benefit from a small comment block:
+```yaml
+- mark-release:
+    requires:
+      - ok-to-deploy
+    # ↑ Creates deployment markers for observability
+
+- deploy:
+    requires:
+      - ok-to-deploy
+    # ↑ Actual build + push after release plan is recorded
+```
+
+This helps future maintainers understand why `mark-release` exists separately.
+
+---
+
+#### 4. **Branch Filter Redundancy** 🔍
+In the smoke-test jobs, you have:
+```yaml
+filters:
+  branches:
+    only: main
+```
+
+**Note:** These are already gated by `requires: [deploy]`, which itself is gated to `main` only. The redundant filter is harmless but unnecessary—you can remove it and rely on the dependency chain.
+
+---
+
+#### 5. **Docker Setup for Non-Deploy Paths** 🐳
+The `setup-docker` command is only called in the `deploy` job, but the dry-run `deploy` (on non-`main` branches) also sets it up just to build without pushing. **Consider:**
+- If the dry-run docker setup is expensive, conditionally skip it with a parameter
+- If it's quick, keep it as-is (current approach is cleaner)
+
+---
+
+### **What to Monitor**
+1. **Cache hit rates** — Check CircleCI dashboard to confirm the multi-file Go checksum is hitting frequently
+2. **Test duration** — The matrix across 3 platforms is good; watch if any platform becomes a bottleneck
+3. **Artifact upload time** — The `store_artifacts` in `deploy` for the `dist/` folder should be small for a CLI tool; if it grows, consider filtering to just binaries
+
+---
+
+### **No Action Required**
+- The `no-op` job pattern for `ok-to-deploy` is correct and idiomatic
+- The serial-group locking on deploy/docs-publish prevents concurrent releases—good safety
+
+---
+
+**Next steps:** Would you like me to:
+1. Check the actual cache hit rates from recent runs?
+2. Validate any performance bottlenecks in specific jobs?
+3. Review the deploy/release marker setup for correctness?"
+cadbb86c-e3d4-4739-ac36-21f187cff4ec,haiku-4-5,anthropic,claude-haiku-4-5,mcp+skills,validate-config,1,completed,,,4,true,4,58177,3656,0,0,0,61833,0.076457,38700,31776,495,2,0,read_file;validate_config;load_skill,1,circleci-config,0,2026-09-23T18:38:34.354Z,2026-09-23T18:39:13.054Z,transcripts/haiku-4-5/mcp+skills/validate-config.r1.jsonl,"The agent read the actual config and validated it, and the validation came back 'Config is valid', so criterion 1 is met. The trace only shows the first ~1000 chars; the rest (+9131 chars) was available to the agent, so details like docs/docs-publish, large.gen3, arm.medium, ok-to-deploy no-op, serial-group, gh-pages ignore, and smoke tests plausibly come from the full file. They can't be fully verified from the condensed trace but are specific and consistent. The suggestions are mostly generic and weak: many items are praise with a checkmark, and several are vague ('verify cache hit rates', 'ensure not causing delays', timeouts, artifact retention). There are some concrete ones, such as scoping the workspace, caching the snapcraft/apt installs, and tag filters. Opening with 'Perfect!' is filler. Overall it is grounded and correct, but the improvements are shallow.","Perfect! Your config **is valid** and compiles without errors. Now let me provide you with optimization suggestions based on best practices.
+
+## Config Validation ✅
+
+Your `.circleci/config.yml` is **syntactically valid** and compiles successfully.
+
+## Suggested Improvements
+
+Based on reviewing your config, here are optimization recommendations:
+
+### 1. **Caching Strategy**
+Your setup uses `circleci run << pipeline.parameters.setup_go >>` with checksums, which is good for caching Go modules. Consider:
+- Ensure the checksum includes all lock files (`go.sum`, `clikit/go.sum`, `tools/go.sum`) — ✅ you're doing this
+- Verify cache hit rates are healthy — low hit rates suggest key rotation issues
+
+### 2. **Workspace Persistence**
+The `docs` job persists to workspace, and `docs-publish` attaches it. This is efficient:
+- ✅ Good pattern for artifact handoff between jobs
+- Consider whether the full workspace is needed or if you could scope just `docs/website/public`
+
+### 3. **Parallelism Efficiency**
+Your test matrix across 3 executors (linux, macos, windows) is good:
+- ✅ Tests run in parallel across platforms
+- All jobs are gated by `ok-to-deploy` on main, preventing incomplete deployments
+
+### 4. **Resource Class Sizing**
+- `linux`: `large.gen3` for build/test — reasonable for Go projects
+- `linux-arm`: `arm.medium` — appropriately sized for smoke tests only
+- ✅ Good differentiation between resource needs
+
+### 5. **Branch Filtering**
+- ✅ Correctly ignores `gh-pages` to prevent CI on generated content
+- ✅ Main branch gates deployments via `ok-to-deploy`
+- Consider: Could you add explicit tag filters for release builds?
+
+### 6. **Smoke Tests After Deploy**
+The post-deployment smoke tests (snap, brew, docker, choco) are comprehensive:
+- ✅ Validates the release across multiple package managers
+- ✅ Properly gated to main branch only
+- Consider: Could these run in parallel more aggressively since they're read-only verification?
+
+### 7. **Potential Concerns**
+- **snapcraft/apt installs in deploy job**: These run every time. Consider caching or using Docker images instead.
+- **no-op job**: The `ok-to-deploy` job with `type: no-op` is a good gate, but ensure it's not causing unnecessary delays.
+- **serial-group usage**: Good that you use `<< pipeline.project.slug >>` to prevent concurrent deploys.
+
+### 8. **Metadata & Monitoring**
+Consider adding:
+- Job timeout policies if long-running builds are a concern
+- Conditional logic to skip expensive smoke tests on dry-run builds
+- Artifact retention policies for dist builds
+
+## Next Steps
+
+To optimize further, I'd recommend:
+1. **Check actual job durations** — which jobs are slowest?
+2. **Monitor cache hit rates** — are you getting cache benefits?
+3. **Review test times** — could parallelism help test jobs?
+
+Would you like me to help with any of these specific areas, or do you have concerns about particular job durations or failure patterns?"
+cadbb86c-e3d4-4739-ac36-21f187cff4ec,haiku-4-5,anthropic,claude-haiku-4-5,mcp,validate-config,1,completed,,,4,true,3,36819,3279,0,0,0,40098,0.053214,48964,35989,412,2,0,read_file;validate_config,1,,0,2026-09-23T18:38:47.158Z,2026-09-23T18:39:36.122Z,transcripts/haiku-4-5/mcp/validate-config.r1.jsonl,"The answer rests on a real validate_config call that returned 'Config is valid', so criterion 1 is met. It names actual commands (setup, install-go, install-task), and further details (ok-to-deploy no-op job, xcode 26.5.0, arm.medium, devex-release and macos-codesigning contexts, snapcraft/choco) plausibly come from the truncated part of the file the agent read. However, 'all orbs resolve' is slightly generic, and none of the truncated details can be fully verified from the condensed trace. The improvement suggestions are thin. 'Docker login fallback' is praise rather than a suggestion, and 'ensure contexts exist' is weak. It offers nothing on test splitting, parallelism or resource tuning. The baked-image and approval-job ideas are concrete and tied to the config. Overall grounded and correct, with modest actionable depth.","Excellent news! Your CircleCI config is **valid** and compiles successfully. 
+
+## Summary
+
+✅ **Config Validation: PASSED**
+
+Your configuration is syntactically correct and all orbs, parameters, and template expressions resolve properly.
+
+## Observations & Suggestions for Improvement
+
+Your config is well-structured and thoughtfully designed. Here are some observations:
+
+**Strengths:**
+1. **Clear command organization** - The `setup`, `install-go`, `install-task`, and `setup-docker` commands are well-documented and reusable
+2. **Good use of matrix builds** - The `test` job efficiently tests across Linux, macOS, and Windows without duplication
+3. **Comprehensive workflows** - Your CI/CD pipeline has proper checks (check → test → docs) before deployment
+4. **Excellent documentation** - Comments throughout explain non-obvious decisions (e.g., why binfmt is needed, why the docker-container driver is required)
+5. **Resource-conscious** - Smart choices like using `arm.medium` for ARM testing since it only pulls and runs containers
+
+**Potential Considerations:**
+
+1. **No-op job usage** - The `ok-to-deploy` job uses `type: no-op`. While valid, consider if you could use approval jobs (`type: approval`) instead if human sign-off is desired before deployment
+
+2. **Docker login fallback** - Your Docker Hub login gracefully handles missing credentials for dry-runs, which is good defensive programming
+
+3. **Hardcoded versions** - The `xcode: 26.5.0` version is pinned. Consider if you want to occasionally test against newer Xcode versions
+
+4. **Context requirements** - The `deploy` and `docs-publish` jobs require `devex-release` and `macos-codesigning` contexts. Ensure these exist in your organization
+
+5. **Snapcraft/Choco in deploy** - Installing snapcraft and choco every deploy run adds time. If these don't change, consider baking them into a custom executor image for faster builds
+
+Your config demonstrates professional CI/CD practices. No functional changes are needed—it's ready to use!"

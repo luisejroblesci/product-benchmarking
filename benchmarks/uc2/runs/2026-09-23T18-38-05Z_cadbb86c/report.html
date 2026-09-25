@@ -1,0 +1,114 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Use-case benchmark · circleci-uc2</title>
+<style>
+  :root{--bg:#F6F8FA;--surface:#fff;--surface2:#F0F3F6;--border:#D0D7DE;--text:#1A1F29;--muted:#57606A;--teal:#00B89C;--amber:#D97706;--pass:#16A34A;--fail:#DC2626;--link:#0969DA;}
+  @media(prefers-color-scheme:dark){:root{--bg:#0D1117;--surface:#161B22;--surface2:#1C2129;--border:#30363D;--text:#E6EDF3;--muted:#8B949E;--teal:#02D1AD;--amber:#F59E0B;--pass:#3FB950;--fail:#F85149;--link:#58A6FF;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;padding:32px 24px;max-width:1200px;margin:0 auto;line-height:1.45;}
+  h1{font-size:20px;font-weight:600;margin:0 0 4px;}
+  h2{font-size:15px;font-weight:600;margin:32px 0 10px;}
+  a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+  .meta{color:var(--muted);font-size:13px;margin-bottom:20px;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;}
+  .card-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px;}
+  .card-val{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:8px;background:var(--surface);}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;}
+  td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top;font-variant-numeric:tabular-nums;}
+  tr:last-child td{border-bottom:none}
+  code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;}
+  .pass,.pos{color:var(--pass)} .fail,.neg{color:var(--fail)} .muted{color:var(--muted)} .teal{color:var(--teal)} .amber{color:var(--amber)}
+  .note{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;margin:16px 0;}
+  .badge{display:inline-block;padding:1px 7px;border-radius:10px;font-size:11px;border:1px solid var(--border);white-space:nowrap;}
+  .badge.completed{color:var(--pass);border-color:var(--pass)} .badge.error{color:var(--fail);border-color:var(--fail)}
+  .badge.skipped{color:var(--muted)} .badge.judge_error{color:var(--amber);border-color:var(--amber)}
+  @media(max-width:600px){body{padding:16px}td,th{padding:6px 8px}}
+
+  .matrix td.cell{min-width:170px}
+  .cell-link{display:block;color:inherit} .cell-link:hover{text-decoration:none;background:var(--surface2)}
+  .cell-main{font-size:13px} .cell-main .big{font-size:18px;font-weight:600}
+  .cell-sub{font-size:12px;color:var(--muted)}
+  .small{font-size:11px}
+  details summary{cursor:pointer;color:var(--muted);font-size:13px}
+</style></head><body>
+<h1>Use-case benchmark · circleci-uc2</h1>
+<div class="meta">run <code>cadbb86c-e3d4-4739-ac36-21f187cff4ec</code> · 9/23/2026, 12:38:05 PM · 1 models × 4 conditions × 2 cases × 1 reps</div>
+<div class="grid">
+  <div class="card"><div class="card-label">Suite</div><div class="card-val">circleci-uc2</div><div class="muted small"><code>7bba93d3805b</code></div></div>
+  <div class="card"><div class="card-label">Git SHA</div><div class="card-val"><code>5466a2b614</code></div></div>
+  <div class="card"><div class="card-label">Skills</div><div class="card-val"><code>056e2b1dee</code></div><div class="muted small">CircleCI-Public/skills@056e2b1dee02bc3a58784e168e82d82637284839</div></div>
+  <div class="card"><div class="card-label">Preflight</div><div class="card-val"><span class="pass">passed (10 checks)</span></div></div>
+  <div class="card"><div class="card-label">Sessions</div><div class="card-val"><span class="pass">8✓</span> <span class="fail">0✗</span> <span class="muted">0 skip</span></div><div class="muted small">8 total</div></div>
+  <div class="card"><div class="card-label">Total cost</div><div class="card-val">$0.5637</div></div>
+</div>
+
+<div class="note">Transcript links load JSONL with <code>fetch()</code>, which browsers block over <code>file://</code>. Serve the run directory with <code>npx tsx src/cli.ts serve &lt;runDir&gt;</code> and open <code>report.html</code> from there.</div>
+
+<h2>Model × condition</h2>
+<p class="muted small">Pass rate and mean score are over judged sessions; turns, tokens and p50 time are over sessions that ran to completion; cost includes errored sessions. Click a cell to jump to its sessions.</p>
+
+<div class="scroll"><table class="matrix"><thead><tr><th>Model</th><th>cli+skills</th><th>cli</th><th>mcp+skills</th><th>mcp</th></tr></thead>
+<tbody><tr><td><b>haiku-4-5</b></td><td class="cell"><a class="cell-link" href="#s-haiku-4-5-cli_2bskills">
+    <div class="cell-main"><span class="big">50%</span> <span class="muted">pass</span> · <b>2.50</b><span class="muted">/5</span></div>
+    <div class="cell-sub">6.5 turns · 33,596 tok</div>
+    <div class="cell-sub">$0.0780 · p50 29.8s</div>
+    <div class="cell-sub"><span class="pass">2✓</span> <span class="fail">0✗</span> <span class="muted">0 skip</span></div></a></td><td class="cell"><a class="cell-link" href="#s-haiku-4-5-cli">
+    <div class="cell-main"><span class="big">100%</span> <span class="muted">pass</span> · <b>3.00</b><span class="muted">/5</span></div>
+    <div class="cell-sub">9.0 turns · 78,218 tok</div>
+    <div class="cell-sub">$0.1662 · p50 28.9s</div>
+    <div class="cell-sub"><span class="pass">2✓</span> <span class="fail">0✗</span> <span class="muted">0 skip</span></div></a></td><td class="cell"><a class="cell-link" href="#s-haiku-4-5-mcp_2bskills">
+    <div class="cell-main"><span class="big">100%</span> <span class="muted">pass</span> · <b>3.50</b><span class="muted">/5</span></div>
+    <div class="cell-sub">5.0 turns · 78,523 tok</div>
+    <div class="cell-sub">$0.1760 · p50 32.0s</div>
+    <div class="cell-sub"><span class="pass">2✓</span> <span class="fail">0✗</span> <span class="muted">0 skip</span></div></a></td><td class="cell"><a class="cell-link" href="#s-haiku-4-5-mcp">
+    <div class="cell-main"><span class="big">100%</span> <span class="muted">pass</span> · <b>3.50</b><span class="muted">/5</span></div>
+    <div class="cell-sub">4.5 turns · 63,106 tok</div>
+    <div class="cell-sub">$0.1436 · p50 38.0s</div>
+    <div class="cell-sub"><span class="pass">2✓</span> <span class="fail">0✗</span> <span class="muted">0 skip</span></div></a></td></tr></tbody></table></div>
+
+<h2>Skills effect</h2>
+<div class="scroll"><table><thead><tr><th>Model</th><th>Comparison</th><th>Δ Pass rate</th><th>Δ Mean score</th><th>Δ Avg tokens</th></tr></thead><tbody><tr><td>haiku-4-5</td><td><code>cli+skills</code> vs <code>cli</code></td>
+      <td><span class="neg">−50pp</span></td>
+      <td><span class="neg">−0.50</span></td>
+      <td><span class="pos">−44,622</span></td></tr><tr><td>haiku-4-5</td><td><code>mcp+skills</code> vs <code>mcp</code></td>
+      <td><span class="">±0pp</span></td>
+      <td><span class="">±0.00</span></td>
+      <td><span class="neg">+15,417</span></td></tr></tbody></table></div>
+
+<h2>Per case</h2>
+<div class="scroll"><table><thead><tr><th>Case</th><th>Model</th><th>cli+skills <span class="muted">pass · score</span></th><th>cli <span class="muted">pass · score</span></th><th>mcp+skills <span class="muted">pass · score</span></th><th>mcp <span class="muted">pass · score</span></th></tr></thead><tbody><tr><td><code>diagnose-failed-build</code></td><td>haiku-4-5</td><td>0% <span class="muted">· 2.0</span></td><td>100% <span class="muted">· 3.0</span></td><td>100% <span class="muted">· 3.0</span></td><td>100% <span class="muted">· 3.0</span></td></tr><tr><td><code>validate-config</code></td><td>haiku-4-5</td><td>100% <span class="muted">· 3.0</span></td><td>100% <span class="muted">· 3.0</span></td><td>100% <span class="muted">· 4.0</span></td><td>100% <span class="muted">· 4.0</span></td></tr></tbody></table></div>
+<h2>Turns by case</h2>
+<div class="scroll"><table><thead><tr><th rowspan="2">Case</th><th colspan="4">haiku-4-5</th></tr><tr><th><code>cli+skills</code></th><th><code>cli</code></th><th><code>mcp+skills</code></th><th><code>mcp</code></th></tr></thead><tbody><tr><td><code>diagnose-failed-build</code></td><td>9</td><td>15</td><td>6</td><td>6</td></tr><tr><td><code>validate-config</code></td><td>4</td><td>3</td><td>4</td><td>3</td></tr><tr><td><strong>average</strong></td><td><strong>6.5</strong></td><td><strong>9</strong></td><td><strong>5</strong></td><td><strong>4.5</strong></td></tr></tbody></table></div>
+<p class="muted small">A turn is one model response (which may include several tool calls). Averages are over sessions that finished; <span class="fail">*</span> marks cells where some session did not.</p>
+
+<h2 id="sessions">Sessions</h2>
+<div class="scroll"><table><thead><tr><th>Model</th><th>Condition</th><th>Case</th><th>Rep</th><th>Status</th><th>Score</th><th>Turns</th><th>Tokens</th><th>Tools</th><th>Cost</th><th>Time</th><th>Trace</th></tr></thead>
+<tbody><tr id="s-haiku-4-5-cli_2bskills"><td>haiku-4-5</td><td><code>cli+skills</code></td><td><code>diagnose-failed-build</code></td><td>1</td>
+        <td><span class="badge completed">completed</span></td><td><span class="fail">2.0</span></td><td>9</td>
+        <td>41,826</td><td>8 <span class="fail">(3✗)</span></td>
+        <td>$0.0467</td><td>28.3s</td><td><a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fcli%2Bskills%2Fdiagnose-failed-build.r1.jsonl">transcript</a> · <a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fcli%2Bskills%2Fdiagnose-failed-build.r1.jsonl&amp;compare=transcripts%2Fhaiku-4-5%2Fcli%2Fdiagnose-failed-build.r1.jsonl">vs cli</a></td></tr><tr><td>haiku-4-5</td><td><code>cli+skills</code></td><td><code>validate-config</code></td><td>1</td>
+        <td><span class="badge completed">completed</span></td><td><span class="pass">3.0</span></td><td>4</td>
+        <td>25,365</td><td>2</td>
+        <td>$0.0312</td><td>31.3s</td><td><a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fcli%2Bskills%2Fvalidate-config.r1.jsonl">transcript</a> · <a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fcli%2Bskills%2Fvalidate-config.r1.jsonl&amp;compare=transcripts%2Fhaiku-4-5%2Fcli%2Fvalidate-config.r1.jsonl">vs cli</a></td></tr><tr id="s-haiku-4-5-cli"><td>haiku-4-5</td><td><code>cli</code></td><td><code>diagnose-failed-build</code></td><td>1</td>
+        <td><span class="badge completed">completed</span></td><td><span class="pass">3.0</span></td><td>15</td>
+        <td>148,317</td><td>14 <span class="fail">(5✗)</span></td>
+        <td>$0.1547</td><td>40.8s</td><td><a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fcli%2Fdiagnose-failed-build.r1.jsonl">transcript</a> · <a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fcli%2Fdiagnose-failed-build.r1.jsonl&amp;compare=transcripts%2Fhaiku-4-5%2Fcli%2Bskills%2Fdiagnose-failed-build.r1.jsonl">vs cli+skills</a></td></tr><tr><td>haiku-4-5</td><td><code>cli</code></td><td><code>validate-config</code></td><td>1</td>
+        <td><span class="badge completed">completed</span></td><td><span class="pass">3.0</span></td><td>3</td>
+        <td>8,118</td><td>4</td>
+        <td>$0.0115</td><td>16.9s</td><td><a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fcli%2Fvalidate-config.r1.jsonl">transcript</a> · <a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fcli%2Fvalidate-config.r1.jsonl&amp;compare=transcripts%2Fhaiku-4-5%2Fcli%2Bskills%2Fvalidate-config.r1.jsonl">vs cli+skills</a></td></tr><tr id="s-haiku-4-5-mcp_2bskills"><td>haiku-4-5</td><td><code>mcp+skills</code></td><td><code>diagnose-failed-build</code></td><td>1</td>
+        <td><span class="badge completed">completed</span></td><td><span class="pass">3.0</span></td><td>6</td>
+        <td>95,212</td><td>8</td>
+        <td>$0.0996</td><td>25.2s</td><td><a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fmcp%2Bskills%2Fdiagnose-failed-build.r1.jsonl">transcript</a> · <a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fmcp%2Bskills%2Fdiagnose-failed-build.r1.jsonl&amp;compare=transcripts%2Fhaiku-4-5%2Fmcp%2Fdiagnose-failed-build.r1.jsonl">vs mcp</a></td></tr><tr><td>haiku-4-5</td><td><code>mcp+skills</code></td><td><code>validate-config</code></td><td>1</td>
+        <td><span class="badge completed">completed</span></td><td><span class="pass">4.0</span></td><td>4</td>
+        <td>61,833</td><td>2</td>
+        <td>$0.0765</td><td>38.7s</td><td><a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fmcp%2Bskills%2Fvalidate-config.r1.jsonl">transcript</a> · <a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fmcp%2Bskills%2Fvalidate-config.r1.jsonl&amp;compare=transcripts%2Fhaiku-4-5%2Fmcp%2Fvalidate-config.r1.jsonl">vs mcp</a></td></tr><tr id="s-haiku-4-5-mcp"><td>haiku-4-5</td><td><code>mcp</code></td><td><code>diagnose-failed-build</code></td><td>1</td>
+        <td><span class="badge completed">completed</span></td><td><span class="pass">3.0</span></td><td>6</td>
+        <td>86,114</td><td>8</td>
+        <td>$0.0904</td><td>27.1s</td><td><a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fmcp%2Fdiagnose-failed-build.r1.jsonl">transcript</a> · <a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fmcp%2Fdiagnose-failed-build.r1.jsonl&amp;compare=transcripts%2Fhaiku-4-5%2Fmcp%2Bskills%2Fdiagnose-failed-build.r1.jsonl">vs mcp+skills</a></td></tr><tr><td>haiku-4-5</td><td><code>mcp</code></td><td><code>validate-config</code></td><td>1</td>
+        <td><span class="badge completed">completed</span></td><td><span class="pass">4.0</span></td><td>3</td>
+        <td>40,098</td><td>2</td>
+        <td>$0.0532</td><td>49.0s</td><td><a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fmcp%2Fvalidate-config.r1.jsonl">transcript</a> · <a href="transcript.html?path=transcripts%2Fhaiku-4-5%2Fmcp%2Fvalidate-config.r1.jsonl&amp;compare=transcripts%2Fhaiku-4-5%2Fmcp%2Bskills%2Fvalidate-config.r1.jsonl">vs mcp+skills</a></td></tr></tbody></table></div>
+<p class="muted small">Generated 2026-09-24T15:49:00.035Z</p>
+</body></html>

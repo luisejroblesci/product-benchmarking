@@ -1,0 +1,1360 @@
+{
+  "runId": "109b0868-1722-42cd-bc12-563902e748a2",
+  "generatedAt": "2026-09-24T15:48:59.577Z",
+  "cells": [
+    {
+      "model": "haiku-4-5",
+      "condition": "cli+skills",
+      "sessions": 10,
+      "completed": 10,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.5,
+      "meanScore": 2.5,
+      "errorRate": 0,
+      "avgTurns": 6.7,
+      "avgTotalTokens": 65275.7,
+      "totalCostUsd": 0.695597,
+      "p50DurationMs": 23989,
+      "p90DurationMs": 32673.299999999996,
+      "avgToolCalls": 6.6,
+      "avgToolErrors": 1.2
+    },
+    {
+      "model": "haiku-4-5",
+      "condition": "cli",
+      "sessions": 10,
+      "completed": 9,
+      "errors": 1,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.4444444444444444,
+      "meanScore": 2.111111111111111,
+      "errorRate": 0.1,
+      "avgTurns": 8,
+      "avgTotalTokens": 35249.88888888889,
+      "totalCostUsd": 0.6235950000000001,
+      "p50DurationMs": 19895,
+      "p90DurationMs": 35621.200000000004,
+      "avgToolCalls": 7.666666666666667,
+      "avgToolErrors": 2.3333333333333335
+    },
+    {
+      "model": "haiku-4-5",
+      "condition": "mcp+skills",
+      "sessions": 10,
+      "completed": 10,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.6,
+      "meanScore": 2.7,
+      "errorRate": 0,
+      "avgTurns": 5.3,
+      "avgTotalTokens": 99749.5,
+      "totalCostUsd": 1.0609309999999998,
+      "p50DurationMs": 30545,
+      "p90DurationMs": 37070.6,
+      "avgToolCalls": 9.8,
+      "avgToolErrors": 0.7
+    },
+    {
+      "model": "haiku-4-5",
+      "condition": "mcp",
+      "sessions": 10,
+      "completed": 10,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.5,
+      "meanScore": 2.6,
+      "errorRate": 0,
+      "avgTurns": 5.1,
+      "avgTotalTokens": 80654.5,
+      "totalCostUsd": 0.862305,
+      "p50DurationMs": 27201.5,
+      "p90DurationMs": 35730.6,
+      "avgToolCalls": 9.4,
+      "avgToolErrors": 0.6
+    },
+    {
+      "model": "sonnet-5",
+      "condition": "cli+skills",
+      "sessions": 10,
+      "completed": 10,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.9,
+      "meanScore": 3.9,
+      "errorRate": 0,
+      "avgTurns": 8.1,
+      "avgTotalTokens": 172071.4,
+      "totalCostUsd": 3.778076,
+      "p50DurationMs": 64497.5,
+      "p90DurationMs": 108184.3,
+      "avgToolCalls": 11.2,
+      "avgToolErrors": 1.1
+    },
+    {
+      "model": "sonnet-5",
+      "condition": "cli",
+      "sessions": 10,
+      "completed": 10,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 3.7,
+      "errorRate": 0,
+      "avgTurns": 11.1,
+      "avgTotalTokens": 250789.5,
+      "totalCostUsd": 5.496014,
+      "p50DurationMs": 82208,
+      "p90DurationMs": 143146.8,
+      "avgToolCalls": 24.4,
+      "avgToolErrors": 2
+    },
+    {
+      "model": "sonnet-5",
+      "condition": "mcp+skills",
+      "sessions": 10,
+      "completed": 10,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 3.6,
+      "errorRate": 0,
+      "avgTurns": 8.4,
+      "avgTotalTokens": 236022,
+      "totalCostUsd": 5.088152,
+      "p50DurationMs": 79355,
+      "p90DurationMs": 117822.59999999998,
+      "avgToolCalls": 11.6,
+      "avgToolErrors": 1
+    },
+    {
+      "model": "sonnet-5",
+      "condition": "mcp",
+      "sessions": 10,
+      "completed": 10,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 3.6,
+      "errorRate": 0,
+      "avgTurns": 8.1,
+      "avgTotalTokens": 219329.3,
+      "totalCostUsd": 4.785954,
+      "p50DurationMs": 65920.5,
+      "p90DurationMs": 140881,
+      "avgToolCalls": 17.4,
+      "avgToolErrors": 0.9
+    },
+    {
+      "model": "opus-5-5",
+      "condition": "cli+skills",
+      "sessions": 10,
+      "completed": 10,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 4.6,
+      "errorRate": 0,
+      "avgTurns": 10.6,
+      "avgTotalTokens": 180383.1,
+      "totalCostUsd": 7.781596,
+      "p50DurationMs": 61527.5,
+      "p90DurationMs": 108652.59999999998,
+      "avgToolCalls": 21,
+      "avgToolErrors": 2.1
+    },
+    {
+      "model": "opus-5-5",
+      "condition": "cli",
+      "sessions": 10,
+      "completed": 10,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 4.6,
+      "errorRate": 0,
+      "avgTurns": 8.2,
+      "avgTotalTokens": 103301.3,
+      "totalCostUsd": 4.537731999999999,
+      "p50DurationMs": 47837,
+      "p90DurationMs": 58703.6,
+      "avgToolCalls": 13.7,
+      "avgToolErrors": 0.9
+    },
+    {
+      "model": "opus-5-5",
+      "condition": "mcp+skills",
+      "sessions": 10,
+      "completed": 10,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 4,
+      "errorRate": 0,
+      "avgTurns": 6.6,
+      "avgTotalTokens": 179045.5,
+      "totalCostUsd": 7.61446,
+      "p50DurationMs": 47034,
+      "p90DurationMs": 61691.49999999999,
+      "avgToolCalls": 12.4,
+      "avgToolErrors": 0.3
+    },
+    {
+      "model": "opus-5-5",
+      "condition": "mcp",
+      "sessions": 10,
+      "completed": 10,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 4,
+      "errorRate": 0,
+      "avgTurns": 6.2,
+      "avgTotalTokens": 147759.8,
+      "totalCostUsd": 6.308376000000001,
+      "p50DurationMs": 43943,
+      "p90DurationMs": 53663.6,
+      "avgToolCalls": 11.7,
+      "avgToolErrors": 0.4
+    }
+  ],
+  "byCase": [
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 14,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 1,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 13,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 13,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 1,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 1,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 14,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 13,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 10,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 11,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 14,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 12,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 8,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 8,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 11,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 13,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 19,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 11,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 14,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 8,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 13,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 16,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 8,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 12,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 13,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 14,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 11,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 12,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 8,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 10,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 8,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 12,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 1,
+      "avgTurns": 14,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 12,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 10,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 15,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 15,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": null,
+      "meanScore": null,
+      "avgTurns": null,
+      "unfinished": 1
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 8,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 16,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 11,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 8,
+      "unfinished": 0
+    }
+  ],
+  "skillsDelta": [
+    {
+      "model": "haiku-4-5",
+      "surface": "cli",
+      "passRateDelta": 0.05555555555555558,
+      "meanScoreDelta": 0.38888888888888884,
+      "tokensDelta": 30025.811111111107
+    },
+    {
+      "model": "haiku-4-5",
+      "surface": "mcp",
+      "passRateDelta": 0.09999999999999998,
+      "meanScoreDelta": 0.10000000000000009,
+      "tokensDelta": 19095
+    },
+    {
+      "model": "sonnet-5",
+      "surface": "cli",
+      "passRateDelta": -0.09999999999999998,
+      "meanScoreDelta": 0.19999999999999973,
+      "tokensDelta": -78718.1
+    },
+    {
+      "model": "sonnet-5",
+      "surface": "mcp",
+      "passRateDelta": 0,
+      "meanScoreDelta": 0,
+      "tokensDelta": 16692.70000000001
+    },
+    {
+      "model": "opus-5-5",
+      "surface": "cli",
+      "passRateDelta": 0,
+      "meanScoreDelta": 0,
+      "tokensDelta": 77081.8
+    },
+    {
+      "model": "opus-5-5",
+      "surface": "mcp",
+      "passRateDelta": 0,
+      "meanScoreDelta": 0,
+      "tokensDelta": 31285.70000000001
+    }
+  ]
+}

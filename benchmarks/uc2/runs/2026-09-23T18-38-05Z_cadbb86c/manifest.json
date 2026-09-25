@@ -1,0 +1,210 @@
+{
+  "runId": "cadbb86c-e3d4-4739-ac36-21f187cff4ec",
+  "startedAt": "2026-09-23T18:38:05.899Z",
+  "gitSha": "5466a2b614cc761be25d0d20b6fbf0565c736eda",
+  "suite": {
+    "name": "circleci-uc2",
+    "path": "suites/circleci-use-cases.json",
+    "sha256": "7bba93d3805b86dfa19b4c0cf2f45c14d4494e5d8f6c7f3c4e0fb5635f448853",
+    "caseIds": [
+      "diagnose-failed-build",
+      "validate-config"
+    ]
+  },
+  "skills": {
+    "repo": "CircleCI-Public/skills",
+    "ref": "056e2b1dee02bc3a58784e168e82d82637284839",
+    "resolvedSha": "056e2b1dee02bc3a58784e168e82d82637284839"
+  },
+  "circleciCliVersion": "circleci 1.0.47471 (c82f24c3bf8c)",
+  "workspace": {
+    "repo": "luisejroblesci/circleci-cli",
+    "ref": "main",
+    "sha": "d0d1a86fc6f721d559d72f7e7effff19c2b27a21"
+  },
+  "config": {
+    "models": [
+      {
+        "id": "opus-5-5",
+        "provider": "anthropic",
+        "model": "claude-opus-5-5",
+        "apiKeyEnv": "ANTHROPIC_API_KEY",
+        "maxConcurrent": 4
+      },
+      {
+        "id": "sonnet-5",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5",
+        "apiKeyEnv": "ANTHROPIC_API_KEY",
+        "maxConcurrent": 4
+      },
+      {
+        "id": "haiku-4-5",
+        "provider": "anthropic",
+        "model": "claude-haiku-4-5",
+        "apiKeyEnv": "ANTHROPIC_API_KEY",
+        "maxConcurrent": 4
+      },
+      {
+        "id": "openai-example",
+        "enabled": false,
+        "provider": "openai",
+        "model": "REPLACE_WITH_OPENAI_MODEL",
+        "apiKeyEnv": "OPENAI_API_KEY"
+      },
+      {
+        "id": "gemini-example",
+        "enabled": false,
+        "provider": "google",
+        "model": "REPLACE_WITH_GEMINI_MODEL",
+        "apiKeyEnv": "GOOGLE_GENERATIVE_AI_API_KEY"
+      },
+      {
+        "id": "openrouter-example",
+        "enabled": false,
+        "provider": "openai-compatible",
+        "model": "REPLACE/ME",
+        "apiKeyEnv": "OPENROUTER_API_KEY",
+        "baseURL": "https://openrouter.ai/api/v1"
+      }
+    ],
+    "judge": {
+      "provider": "anthropic",
+      "model": "claude-opus-5-5",
+      "apiKeyEnv": "ANTHROPIC_API_KEY"
+    },
+    "conditions": [
+      "cli+skills",
+      "cli",
+      "mcp+skills",
+      "mcp"
+    ],
+    "repetitions": 3,
+    "maxTurns": 25,
+    "concurrency": 8,
+    "sessionTimeoutMs": 300000,
+    "toolTimeoutMs": 60000,
+    "circuitBreakerThreshold": 5,
+    "skills": {
+      "repo": "CircleCI-Public/skills",
+      "ref": "056e2b1dee02bc3a58784e168e82d82637284839",
+      "path": "plugins/circleci/skills"
+    },
+    "mcp": {
+      "url": "https://mcp.circleci.com/v1/mcp",
+      "tokenEnv": "CIRCLECI_TOKEN"
+    },
+    "cli": {
+      "binary": "circleci",
+      "tokenEnv": "CIRCLECI_TOKEN"
+    },
+    "target": {
+      "projectSlug": "gh/luisejroblesci/circleci-cli",
+      "orgSlug": "gh/luisejroblesci",
+      "repo": "luisejroblesci/circleci-cli",
+      "ref": "main"
+    },
+    "pricing": {
+      "claude-opus-5-5": {
+        "inPerMTok": 4,
+        "outPerMTok": 20,
+        "cacheReadPerMTok": 0.2,
+        "cacheWritePerMTok": 5
+      },
+      "claude-sonnet-5": {
+        "inPerMTok": 2,
+        "outPerMTok": 10,
+        "cacheReadPerMTok": 0.2,
+        "cacheWritePerMTok": 2.5
+      },
+      "claude-haiku-4-5": {
+        "inPerMTok": 1,
+        "outPerMTok": 5,
+        "cacheReadPerMTok": 0.1,
+        "cacheWritePerMTok": 1.25
+      }
+    }
+  },
+  "models": [
+    "haiku-4-5"
+  ],
+  "conditions": [
+    "cli+skills",
+    "cli",
+    "mcp+skills",
+    "mcp"
+  ],
+  "repetitions": 1,
+  "preflight": [
+    {
+      "name": "config/env",
+      "target": "bench.config",
+      "ok": true,
+      "detail": "env ok; 1 model(s); conditions: cli+skills, cli, mcp+skills, mcp",
+      "durationMs": 6
+    },
+    {
+      "name": "model: tool call",
+      "target": "haiku-4-5 (anthropic/claude-haiku-4-5)",
+      "ok": true,
+      "detail": "echo(\"ok\") called; reply=\"Done.\"; 1316 tok",
+      "durationMs": 2163
+    },
+    {
+      "name": "model: tool call",
+      "target": "judge (anthropic/claude-opus-5-5)",
+      "ok": true,
+      "detail": "echo(\"ok\") called; reply=\"I called the echo tool with \\\"ok\\\" and it \"; 958 tok",
+      "durationMs": 5307
+    },
+    {
+      "name": "judge: structured output",
+      "target": "judge (anthropic/claude-opus-5-5)",
+      "ok": true,
+      "detail": "mode=structured; {\"ok\":true,\"word\":\"ready\"}",
+      "durationMs": 1866
+    },
+    {
+      "name": "cli: version",
+      "target": "circleci",
+      "ok": true,
+      "detail": "circleci 1.0.47471 (c82f24c3bf8c)",
+      "durationMs": 140
+    },
+    {
+      "name": "cli: auth read",
+      "target": "gh/luisejroblesci/circleci-cli",
+      "ok": true,
+      "detail": "circleci run list --project … ok: latest run 6eed8b92-c489-4dc4-bbab-5f386719c5aa",
+      "durationMs": 653
+    },
+    {
+      "name": "mcp: list tools",
+      "target": "https://mcp.circleci.com/v1/mcp",
+      "ok": true,
+      "detail": "26 tools: cancel_workflow, download_usage_data, get_deploy_component, get_deploy_environment, get_job, get_job_logs, get_job_resource_usage, get_me, get_orb, get_orb_source, get_run, get_skill, get_workflow, list_deploy_component_versions, list_deploy_components, list_deploy_environments, list_deployments, list_job_artifacts, list_job_tests, list_run_workflows, list_runs, list_skills, list_workflow_jobs, rerun_workflow, rollback_deploy_component, validate_config",
+      "durationMs": 619
+    },
+    {
+      "name": "mcp: hello/get_me",
+      "target": "https://mcp.circleci.com/v1/mcp",
+      "ok": true,
+      "detail": "get_me: Authenticated as luisejroblesci (id 8521e67e-5b47-495f-bb1b-37f695f06504)",
+      "durationMs": 972
+    },
+    {
+      "name": "workspace: checkout",
+      "target": "luisejroblesci/circleci-cli@main",
+      "ok": true,
+      "detail": "d0d1a86fc6f7 · .circleci/config.yml present",
+      "durationMs": 2141
+    },
+    {
+      "name": "skills: load",
+      "target": "CircleCI-Public/skills@056e2b1dee02",
+      "ok": true,
+      "detail": "8 skills @ 056e2b1dee02: circleci-builds, circleci-cli, circleci-config, circleci-deploy-setup, circleci-smarter-testing, circleci-testsuite, debug-ci-failures, onboarding",
+      "durationMs": 39
+    }
+  ]
+}
