@@ -7,6 +7,15 @@ Two benchmarks live here:
 - **UC1 (`sidecar`)** — apples-to-apples speed comparison between a `chunk` sidecar run and a traditional CI pipeline run, on real commits.
 - **UC2 (`usecases`)** — the main focus of this repo. 10 real developer workflow prompts, run against 3 Claude models (Opus 5.5, Sonnet 5, Haiku 4.5 today; OpenAI/Gemini/OpenRouter adapters are already wired in but disabled pending real model IDs) across 4 tool-access conditions, scored by an LLM judge against a rubric.
 
+## Sidecar use cases
+
+Beyond the UC1 speed benchmark, [`use-cases/chunk-sidecars/`](use-cases/chunk-sidecars/README.md)
+has PMM/sales-facing writeups validating three concrete `chunk` sidecar use
+cases (stopping broken agent code before CI, running workloads you can't run
+locally, delegating grunt work to an agent) against a real demo repo, plus
+an objection-handling [FAQ](use-cases/chunk-sidecars/FAQ.md). `use-cases/other/`
+is reserved for future writeups on tools other than the sidecar.
+
 ## Quickstart
 
 Requires Node 22 (matches `cimg/node:22.0` in CI).
@@ -62,6 +71,8 @@ bench.config.json                 models, conditions, judge, skills/mcp/cli/targ
 benchmarks/uc2/                   UC2 run outputs — versioned in git (see "Where results are stored")
 results/                          UC1 run outputs — gitignored, local only
 suites/circleci-use-cases.json    the 10 UC2 use cases (prompt + rubric each)
+use-cases/chunk-sidecars/         sidecar use-case writeups + FAQ (see README.md there)
+use-cases/other/                  (future) use cases for non-sidecar tools
 src/
 ├── cli.ts                        Commander entrypoint: sidecar, usecases, preflight, inspect, judge, finalize, serve, report
 ├── core/                         config loading, shared types, storage, report/summary generation
