@@ -1,4 +1,4 @@
-# Chunk sidecar FAQ (sales-facing)
+# Chunk sidecar FAQ
 
 Answers grounded in `chunk-cli/docs/CLI.md` and `docs/GETTING_STARTED.md`,
 plus what we hit hands-on validating the three use cases in this folder.
