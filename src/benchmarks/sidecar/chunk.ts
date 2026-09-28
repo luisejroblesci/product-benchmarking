@@ -9,6 +9,28 @@ const PREFLIGHT_TIMEOUT_MS = 60_000;
 
 interface ChunkConfig {
   commands?: Array<{ name: string; run: string; role: string; timeout?: number; remote?: boolean }>;
+  environment?: { stack?: string };
+}
+
+// Maps .chunk/config.json's detected `environment.stack` to a cheap command
+// that proves a working runtime is present on the sidecar. Extend as new
+// stacks show up in benchmarked repos.
+const RUNTIME_CHECK_BY_STACK: Record<string, [string, string[]]> = {
+  go: ['go', ['version']],
+  javascript: ['node', ['--version']],
+  python: ['python3', ['--version']],
+};
+
+function detectRuntimeCheck(repoDir: string): [string, string[]] {
+  const configFile = path.join(repoDir, '.chunk', 'config.json');
+  try {
+    const config = JSON.parse(fs.readFileSync(configFile, 'utf8')) as ChunkConfig;
+    const stack = config.environment?.stack;
+    if (stack && RUNTIME_CHECK_BY_STACK[stack]) return RUNTIME_CHECK_BY_STACK[stack];
+  } catch {
+    // fall through to default below
+  }
+  return RUNTIME_CHECK_BY_STACK.go; // preserves prior default behavior (circleci-cli is Go)
 }
 
 function readGateCommands(repoDir: string): Array<{ name: string; run: string; timeoutMs: number }> {
@@ -46,15 +68,16 @@ export async function verifySidecar(repoDir: string, sidecarId: string): Promise
     throw new Error(`Sidecar pre-flight failed: sync error — ${msg}\nRun: chunk sidecar setup`);
   }
 
-  // 2. Verify Go is available on the microVM
+  // 2. Verify a runtime matching the repo's detected stack is available on the microVM
+  const [runtimeCmd, runtimeArgs] = detectRuntimeCheck(repoDir);
   try {
     await execFileAsync(
-      'chunk', ['sidecar', 'exec', '--sidecar-id', sidecarId, '--command', 'go', '--', 'version'],
+      'chunk', ['sidecar', 'exec', '--sidecar-id', sidecarId, '--command', runtimeCmd, '--', ...runtimeArgs],
       { cwd: repoDir, timeout: PREFLIGHT_TIMEOUT_MS }
     );
   } catch (err: unknown) {
     const msg = (err as { stderr?: string; message?: string }).stderr ?? String(err);
-    throw new Error(`Sidecar pre-flight failed: Go not found on sidecar — ${msg}\nRun: chunk sidecar setup`);
+    throw new Error(`Sidecar pre-flight failed: ${runtimeCmd} not found on sidecar — ${msg}\nRun: chunk sidecar setup`);
   }
 }
 
@@ -80,13 +103,15 @@ export async function runChunkValidation(repoDir: string, sidecarId: string): Pr
   console.log('  [sidecar] running gate commands on microVM…');
   const gates = readGateCommands(repoDir);
   const outputs: string[] = [];
+  // Sidecars sync the repo to /home/user/<basename of the local repo dir>.
+  const remoteDir = `/home/user/${path.basename(repoDir)}`;
 
   for (const gate of gates) {
     console.log(`  [sidecar] → ${gate.name}: ${gate.run}`);
     try {
       const { stdout, stderr } = await execFileAsync(
         'chunk',
-        ['sidecar', 'exec', '--sidecar-id', sidecarId, '--command', 'sh', '--', '-c', `cd /home/user/circleci-cli && ${gate.run}`],
+        ['sidecar', 'exec', '--sidecar-id', sidecarId, '--command', 'sh', '--', '-c', `cd ${remoteDir} && ${gate.run}`],
         { cwd: repoDir, timeout: gate.timeoutMs, maxBuffer: 50 * 1024 * 1024 }
       );
       outputs.push(stdout || stderr);
