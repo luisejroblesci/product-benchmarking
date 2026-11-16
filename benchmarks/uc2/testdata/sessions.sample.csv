@@ -1,0 +1,37 @@
+runId,model,provider,providerModel,condition,caseId,rep,status,errorKind,errorMessage,score,pass,turns,inputTokens,outputTokens,cacheReadTokens,cacheWriteTokens,reasoningTokens,totalTokens,costUsd,durationMs,modelTimeMs,toolTimeMs,toolCallCount,toolErrors,distinctTools,firstToolTurn,skillsLoaded,retries,startedAt,endedAt,transcriptPath,judgeReasoning,finalAnswer
+109b0868-1722-42cd-bc12-563902e748a2,haiku-4-5,anthropic,claude-haiku-4-5,cli,diagnose-failed-build,1,completed,,,1,false,6,11925,684,0,0,0,12609,0.015345,18944,9818,2746,5,2,circleci,1,,0,2026-09-23T19:04:36.680Z,2026-09-23T19:04:55.624Z,transcripts/haiku-4-5/cli/diagnose-failed-build.r1.jsonl,"The agent never found a main-branch run. The workflow list output was truncated ([+628 chars]), so the trace does not support the claim that there are no main builds. The agent never filtered by branch after the flag error, and it did not investigate the failed bench/sidecar-test workflow's jobs or logs either. The answer names no failing job, quotes no error, gives no root cause, and suggests no fix. It does avoid fabricating errors, and it honestly notes the one failed run it saw on another branch. But its assertion that main has no recent builds is weakly grounded, and the answer ends by asking the user for clarification instead of completing the task. Rubric criteria 1 through 4 are largely unmet.","Based on the workflow list output, I can see that your recent builds are on the `bench/sidecar-test` branch rather than the `main` branch. The most recent workflow listed shows:
+
+**The last build that failed was on the `bench/sidecar-test` branch (revision 8f60565), not on the main branch.**
+
+However, I don't see any recent builds on your main branch in the current output. This could mean either:
+1. There haven't been recent pushes to the main branch, or
+2. The main branch may not have active builds
+
+Could you provide more context? Are you looking for:
+- A specific build date/time for the main branch?
+- Information about the failed build on `bench/sidecar-test` instead?
+
+If you'd like to see details about the failed `bench/sidecar-test` build, I can retrieve more information about that workflow."
+109b0868-1722-42cd-bc12-563902e748a2,opus-5-5,anthropic,claude-opus-5-5,mcp+skills,find-flaky-tests,1,completed,,,4,true,8,323489,3298,0,0,798,326787,1.359916,58746,41564,7491,21,0,list_skills;load_skill;get_skill;list_runs;list_run_workflows;list_workflow_jobs;list_job_tests;get_job,1,debug-ci-failures,0,2026-09-23T19:05:43.153Z,2026-09-23T19:06:41.899Z,transcripts/opus-5-5/mcp+skills/find-flaky-tests.r1.jsonl,"The answer meets most rubric criteria. It examined several runs and workflows, and pulled test results from two jobs: the failed test-linux job and a passing job filtered on the same test. It names a specific test, TestContextRestrictionCreate_Color, with failure and pass evidence. It separates the consistently failing deploy and docs-publish jobs from intermittent failures, states the scope honestly (27 runs over about two days, not 30), and gives practical next steps. Weaknesses: - Test results were read from very few jobs (only two list_job_tests calls returned data). - The pass and fail came from different runs and possibly different commits, so calling the test 'flaky' is weakly supported, though the answer admits the evidence is thin. - Specifics such as the error text, file line and exit code are not visible in the condensed trace, but they plausibly came from the job and test outputs.","I found one test that looks flaky: **`TestContextRestrictionCreate_Color`**. It's only one failure, though, so the evidence is thin.
+
+There's no tool here that reports test flakiness directly, so I worked it out by hand from the run history. The project only has 27 runs, all from **Sept 17–18, 2026**, so this covers about two days, not a full 30.
+
+**`TestContextRestrictionCreate_Color`** (`github.com/CircleCI-Public/circleci-cli/acceptance`, `context_test.go:1149`)
+- **Failed** once, in the `test-linux` job of run `6eed8b92…` on branch `bench/sidecar-test` (commit `8f60565e`, Sept 18 18:40). That was the only failing test in the job, and it made `task ci:test` exit with code 201. The error was:
+  ```
+  fork/exec /tmp/circleci-cli-test-3342121767/circleci: operation not permitted
+  ```
+  It took 5.00s to fail. When it passes, it takes about 0.02s.
+- **Passed** in other runs, for example `test-linux` in run `bd3cf2d0…` (0.02s). `test-macos` and `test-windows` also passed in the same workflow where Linux failed.
+- The error comes from the operating system refusing to start the CLI binary the test had just built in `/tmp`. The test's own check didn't fail. That points to a problem with the test machine or a race around the binary, not a bug in the code. It could be the binary being run before it's finished writing, or something about how `/tmp` is set up.
+
+**Other failures I ruled out (not tests):**
+- **`deploy` and `docs-publish`** failed in every one of the 7 `ci` workflows in run `a37638ad…` (`main`, commit `d0d1a86f`), and also in run `3934a61c…`. Those are release jobs with no test results. Failing the same way every time also means they're broken, not flaky.
+- **`check`** failed in run `bd3cf2d0…`, but it reported no test results, so no test was involved.
+
+**Next steps:**
+1. Rerun `test-linux` on that branch a few times to see whether `TestContextRestrictionCreate_Color`, or other acceptance tests that build and run the binary, fail with the same `operation not permitted` error. One failure isn't enough to be sure.
+2. Look at how the acceptance tests build and run the temporary `circleci` binary, and make sure the file is fully written and executable before it runs.
+
+I can read the job's full log or the test setup code in this checkout if you want to dig into the cause."
+109b0868-1722-42cd-bc12-563902e748a2,haiku-4-5,anthropic,claude-haiku-4-5,cli,compare-test-results-branches,1,error,provider_error,"400 prompt is too long: 305814 tokens > 200000 maximum — {""type"":""error"",""error"":{""type"":""invalid_request_error"",""message"":""prompt is too long: 305814 tokens > 200000 maximum""},""request_id"":""req_011CfLv19ZK3ifLYsTzbeQEi""}",,,13,257943,1831,0,0,0,259774,0.267098,29106,20606,7324,19,1,list_files;circleci;read_file,1,,0,2026-09-23T19:21:17.534Z,2026-09-23T19:21:46.640Z,transcripts/haiku-4-5/cli/compare-test-results-branches.r1.jsonl,,Both returned no test failures (exit code 0 with no output means all tests passed). Let me check one more time more comprehensively by looking at the test-linux job from both runs that show all tests:

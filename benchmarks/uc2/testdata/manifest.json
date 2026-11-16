@@ -1,0 +1,45 @@
+{
+  "runId": "109b0868-1722-42cd-bc12-563902e748a2",
+  "startedAt": "2026-09-23T19:04:35.147Z",
+  "gitSha": "5466a2b614cc761be25d0d20b6fbf0565c736eda",
+  "suite": {
+    "name": "circleci-use-cases",
+    "path": "suites/circleci-use-cases.json",
+    "sha256": "fa6ac0a8f099550c9972f9613d3d668c17630f33643abec71329c243413e7f7d",
+    "caseIds": [
+      "diagnose-failed-build",
+      "find-flaky-tests",
+      "monitor-pipeline-status",
+      "optimize-resource-usage",
+      "rerun-failed-workflow",
+      "retrieve-build-artifacts",
+      "audit-recent-deployments",
+      "debug-slow-pipeline",
+      "validate-config",
+      "compare-test-results-branches"
+    ]
+  },
+  "skills": {
+    "repo": "CircleCI-Public/skills",
+    "ref": "056e2b1dee02bc3a58784e168e82d82637284839",
+    "resolvedSha": "056e2b1dee02bc3a58784e168e82d82637284839"
+  },
+  "circleciCliVersion": "circleci 1.0.47471 (c82f24c3bf8c)",
+  "workspace": {
+    "repo": "luisejroblesci/circleci-cli",
+    "ref": "main",
+    "sha": "d0d1a86fc6f721d559d72f7e7effff19c2b27a21"
+  },
+  "models": [
+    "opus-5-5",
+    "sonnet-5",
+    "haiku-4-5"
+  ],
+  "conditions": [
+    "cli+skills",
+    "cli",
+    "mcp+skills",
+    "mcp"
+  ],
+  "repetitions": 1
+}
