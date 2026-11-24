@@ -5,7 +5,7 @@ A TypeScript CLI that benchmarks how well LLM agents perform real CircleCI devel
 Two benchmarks live here:
 
 - **UC1 (`sidecar`)** — apples-to-apples speed comparison between a `chunk` sidecar run and a traditional CI pipeline run, on real commits.
-- **UC2 (`usecases`)** — the main focus of this repo. 10 real developer workflow prompts, run against 3 Claude models (Opus 5.5, Sonnet 5, Haiku 4.5 today; OpenAI/Gemini/OpenRouter adapters are already wired in but disabled pending real model IDs) across 4 tool-access conditions, scored by an LLM judge against a rubric.
+- **UC2 (`usecases`)** — the main focus of this repo. 11 real developer workflow prompts, run against 3 Claude models (Opus 5.5, Sonnet 5, Haiku 4.5 today; OpenAI/Gemini/OpenRouter adapters are already wired in but disabled pending real model IDs) across 4 tool-access conditions, scored by an LLM judge against a rubric.
 
 ## Sidecar use cases
 
@@ -70,7 +70,7 @@ npx tsx src/cli.ts sidecar --repo luisejroblesci/circleci-cli \
 bench.config.json                 models, conditions, judge, skills/mcp/cli/target config, pricing
 benchmarks/uc2/                   UC2 run outputs — versioned in git (see "Where results are stored")
 results/                          UC1 run outputs — gitignored, local only
-suites/circleci-use-cases.json    the 10 UC2 use cases (prompt + rubric each)
+suites/circleci-use-cases.json    the 11 UC2 use cases (prompt + rubric each)
 use-cases/chunk-sidecars/         sidecar use-case writeups + FAQ (see README.md there)
 use-cases/other/                  (future) use cases for non-sidecar tools
 src/
@@ -198,6 +198,17 @@ Tests whether the agent identifies a real non-main branch, compares actual test/
 
 ```bash
 npx tsx src/cli.ts usecases --cases compare-test-results-branches
+```
+
+### `use-circleci-on-project`
+> "Let's use CircleCI for this project. Treat it as if it were not on CircleCI yet…"
+
+Tests whether the agent can take a repository from zero to a first green run: detect the real toolchain from the checkout, propose a `.circleci/config.yml` that fits it, and lay out the connection steps (`circleci onboard --scan --org`, or `project create` → `pipeline create` → `project trigger create`), validation (`circleci config validate` / MCP `validate_config`), and how to trigger and watch the first run — using only real commands.
+
+The target repo already has a `.circleci/config.yml` and a CircleCI project, so the prompt asks the agent to treat it as not yet set up. State-changing commands (`project create`, `pipeline create`, `trigger create`, `onboard`, `run trigger`) are blocked by the benchmark safety policy in every condition, so the rubric grades the *proposed* config and steps, and penalizes answers that claim to have created anything.
+
+```bash
+npx tsx src/cli.ts usecases --cases use-circleci-on-project
 ```
 
 ## How to contribute

@@ -131,6 +131,19 @@
         "Distinguishes new regressions from failures that also exist on main.",
         "Does not fabricate test names, branches, or results; if no feature branch runs exist, says so."
       ]
+    },
+    {
+      "id": "use-circleci-on-project",
+      "prompt": "Let's use CircleCI for this project. Treat it as if it were not on CircleCI yet (no .circleci/ directory and no CircleCI project) and walk me through getting to a first green run: the .circleci/config.yml you would commit for this codebase, how to connect the repository and create the project, how to check the config is valid before pushing, and how to kick off and watch the first run.",
+      "tags": ["onboarding", "setup", "config", "project"],
+      "expected": "Inspects the checkout to detect the language and toolchain (for the target project: a Go module with a Taskfile), proposes a complete .circleci/config.yml whose executor/image and build/test steps match that toolchain, lays out the connection steps with real CLI commands (circleci onboard --scan --org <org>, or project create -> pipeline create -> project trigger create, with the CircleCI GitHub App installed for the org), says how to validate the config (circleci config validate or the MCP validate_config tool) and how to start and watch the first run (push then circleci run watch --sha <sha>, or circleci run trigger), and is clear about which of these steps it actually performed versus is proposing. Since the benchmark blocks state-changing commands, a strong answer proposes the exact commands rather than claiming to have run them.",
+      "rubric": [
+        "Detects the project's language and toolchain from files actually read in the trace (e.g. go.mod, Taskfile.yml, package.json), and the proposed config's executor/image, dependency, build and test steps match that toolchain; a config for a different stack, or steps that do not correspond to anything in the repo, is an unsupported claim.",
+        "Provides a complete .circleci/config.yml (version, at least one job with checkout plus build/test steps, and a workflow that runs it), and either validates a config with a real tool in the trace (`circleci config validate` or the `validate_config` MCP tool) or states plainly that validation could not be run here and gives the exact command the user should run.",
+        "Gives the connection steps using only real CircleCI CLI commands and flags: `circleci onboard --scan --org <org-slug>`, or the manual path `circleci project create <name> --org <org-slug>`, `circleci pipeline create --name ... --config-file .circleci/config.yml ...`, `circleci project trigger create --pipeline-definition-id <id> --repo-id <id>`; mentions that the CircleCI GitHub App must be installed for the org; and uses the target org/project slug consistently.",
+        "Explains how to start and watch the first run (commit and push then `circleci run watch --sha <sha>`, or `circleci run trigger` / `circleci pipeline run`), and what to do if it is red (e.g. `circleci run get --failure-report`, job output, `circleci config validate`).",
+        "Does not invent commands, flags, orbs, images, or run/pipeline IDs; does not claim to have created a project, pipeline definition, trigger, or run that the trace does not show (state-changing commands are blocked in this benchmark and should be proposed, not reported as done); if it notices the repo already has a CircleCI config or project, says so briefly without abandoning the requested setup walkthrough."
+      ]
     }
   ]
 }
