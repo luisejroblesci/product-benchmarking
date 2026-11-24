@@ -88,7 +88,7 @@ src/
 |---|---|---|
 | `usecases` | Run the UC2 benchmark | `--models`, `--conditions`, `--cases`, `--reps`, `--concurrency`, `--out`, `--resume <runDir>`, `--retry-errors`, `--skip-preflight`, `--no-ui` |
 | `sidecar` | Run the UC1 benchmark | `--repo`, `--ci-repo`, `--repo-dir`, `--branch`, `--n`, `--commits`, `--out`, `--no-ui` |
-| `preflight` | Verify every configured model + tool surface works, without running evals | `--config`, `--suite`, `--models`, `--conditions` |
+| `preflight` | Verify every configured model + tool surface works, including that the CircleCI token is a member of the target org, without running evals | `--config`, `--suite`, `--models`, `--conditions` |
 | `inspect <runDir>` | Print turn-by-turn timelines for sessions in a run | `--model`, `--condition`, `--case`, `--rep` |
 | `judge <runDir>` | Re-grade sessions whose judge call failed (or all, with `--all`) | `--config`, `--suite`, `--all` |
 | `finalize <runDir>` | Regenerate `summary.json`/`report.html`/`sessions.csv` from `sessions.jsonl` | — |

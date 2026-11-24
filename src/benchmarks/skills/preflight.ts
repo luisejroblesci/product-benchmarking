@@ -89,6 +89,38 @@ async function cliVersion(cfg: BenchConfig): Promise<CheckOutcome> {
   }
 }
 
+/** Org the token must belong to: `target.orgSlug`, else derived from a `vcs/org/repo` project slug. */
+export function targetOrgSlug(cfg: BenchConfig): string | undefined {
+  if (cfg.target.orgSlug) return cfg.target.orgSlug;
+  const parts = cfg.target.projectSlug.split('/');
+  return parts.length === 3 ? `${parts[0]}/${parts[1]}` : undefined;
+}
+
+/**
+ * The token must be a member of the target org, not just able to read a public project. A
+ * non-member token passes `run list` on a public project but gets 403 / "organization not found"
+ * on every org-scoped call (config validate, workflow rerun, deploy list, MCP validate_config),
+ * which silently turned the 2026-11-24 run into a retry benchmark for 7 of 10 cases.
+ */
+async function cliOrgMembership(cfg: BenchConfig): Promise<CheckOutcome> {
+  const org = targetOrgSlug(cfg);
+  if (!org) return { ok: false, detail: `cannot derive an org from projectSlug "${cfg.target.projectSlug}"; set target.orgSlug` };
+  const dir = await mkdtemp(path.join(tmpdir(), 'bench-preflight-cli-'));
+  try {
+    const r = await runCli(cfg, ['org', 'get', '--org', org, '--json'], dir);
+    const body = r.output.replace(/\[exit code: -?\d+\]\s*$/, '').trim();
+    let parsed: Record<string, unknown> | undefined;
+    try { parsed = JSON.parse(body) as Record<string, unknown>; } catch { /* keep raw */ }
+    if (r.isError || parsed?.error === true || !parsed?.id) {
+      const msg = String(parsed?.message ?? body).slice(0, 200);
+      return { ok: false, detail: `token is not a member of ${org}: ${oneLine(msg)}` };
+    }
+    return { ok: true, detail: `member of ${org} (${String(parsed.name)}, admin: ${String(parsed.admin ?? false)})` };
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+}
+
 /** Authenticated read-only call through the real CLI surface (same tool/env a session gets). */
 async function cliAuth(cfg: BenchConfig): Promise<CheckOutcome> {
   const dir = await mkdtemp(path.join(tmpdir(), 'bench-preflight-cli-'));
@@ -177,6 +209,7 @@ export const runPreflight: RunPreflight = async (cfg, { models, conditions }) =>
   if (conditions.some((c) => c.startsWith('cli'))) {
     jobs.push(timed('cli: version', cfg.cli.binary, () => cliVersion(cfg)));
     jobs.push(timed('cli: auth read', cfg.target.projectSlug, () => cliAuth(cfg)));
+    jobs.push(timed('cli: org membership', targetOrgSlug(cfg) ?? cfg.target.projectSlug, () => cliOrgMembership(cfg)));
   }
   if (conditions.some((c) => c.startsWith('mcp'))) {
     jobs.push(timed('mcp: list tools', cfg.mcp.url, () => mcpTools(cfg)));
