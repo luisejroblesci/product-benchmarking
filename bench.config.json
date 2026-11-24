@@ -15,7 +15,7 @@
   "sessionTimeoutMs": 300000,
   "toolTimeoutMs": 60000,
   "circuitBreakerThreshold": 5,
-  "skills": { "repo": "CircleCI-Public/skills", "ref": "056e2b1dee02bc3a58784e168e82d82637284839", "path": "plugins/circleci/skills" },
+  "skills": { "repo": "CircleCI-Public/skills", "ref": "da055a8fe50e3ea8b4ec66630a2629bbb7a30567", "path": "plugins/circleci/skills" },
   "mcp": { "url": "https://mcp.circleci.com/v1/mcp", "tokenEnv": "CIRCLECI_TOKEN" },
   "cli": { "binary": "circleci", "tokenEnv": "CIRCLECI_TOKEN" },
   "target": { "projectSlug": "gh/luisejroblesci/circleci-cli", "orgSlug": "gh/luisejroblesci", "repo": "luisejroblesci/circleci-cli", "ref": "main" },

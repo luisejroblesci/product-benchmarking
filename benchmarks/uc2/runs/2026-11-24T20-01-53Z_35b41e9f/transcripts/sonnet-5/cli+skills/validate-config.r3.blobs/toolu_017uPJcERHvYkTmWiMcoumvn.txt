@@ -1,0 +1,850 @@
+# Job Output
+- ID: `fea17512-adc7-45c6-83f6-9cadc8429f60`
+- Name: deploy
+- Execution: 0
+
+## 0: Spin up environment
+- Status: ✅ succeeded
+- Duration: 279ms
+### Output
+
+```text
+machine-agent version 1.0.144067-b15f5804 (image: "ubuntu-2604:current", public ip: "35.171.187.15", provider: "EC2")
+task-agent version 1.0.351139-8d3b40a1
+Downloading task-agent: success after 265.959228ms.
+```
+
+## 99: Preparing environment variables
+- Status: ✅ succeeded
+- Duration: 15ms
+### Output
+
+```text
+Using build environment variables:
+  BASH_ENV=/tmp/.bash_env-fea17512-adc7-45c6-83f6-9cadc8429f60-0-build
+  CI=true
+  CIRCLECI=true
+  CIRCLE_BRANCH=main
+  CIRCLE_BUILD_NUM=186
+  CIRCLE_BUILD_URL=https://circleci.com/gh/luisejroblesci/circleci-cli/186
+  CIRCLE_JOB=deploy
+  CIRCLE_NODE_INDEX=0
+  CIRCLE_NODE_TOTAL=1
+  CIRCLE_ORGANIZATION_ID=2a210dd0-df65-46a5-9900-4f10e1926c1b
+  CIRCLE_PIPELINE_ID=a37638ad-0bb0-4612-a134-fb359e835ffa
+  CIRCLE_PROJECT_ID=dc7bfc99-18f6-4571-a7ee-07f660250df6
+  CIRCLE_PROJECT_REPONAME=circleci-cli
+  CIRCLE_PROJECT_USERNAME=luisejroblesci
+  CIRCLE_REPOSITORY_URL=git@github.com:luisejroblesci/circleci-cli.git
+  CIRCLE_SHA1=d0d1a86fc6f721d559d72f7e7effff19c2b27a21
+  CIRCLE_SHELL_ENV=/tmp/.bash_env-fea17512-adc7-45c6-83f6-9cadc8429f60-0-build
+  CIRCLE_USERNAME=luisejroblesci
+  CIRCLE_WORKFLOW_ID=5c772de6-9d1d-44c7-aa22-e1281696dc68
+  CIRCLE_WORKFLOW_JOB_ID=fea17512-adc7-45c6-83f6-9cadc8429f60
+  CIRCLE_WORKFLOW_WORKSPACE_ID=07ea2997-d66a-442f-adb7-a595be7c3096
+  CIRCLE_WORKING_DIRECTORY=/home/circleci/project
+
+Using environment variables from project settings and/or contexts:
+  CIRCLE_OIDC_TOKEN=**REDACTED**
+  CIRCLE_OIDC_TOKEN_V2=**REDACTED**
+
+The redacted variables listed above will be masked in run step output.
+```
+
+## 101: Checkout code
+- Status: ✅ succeeded
+- Duration: 1s
+### Output
+
+```text
+Creating .ssh directory
+Adding the following entries to known_hosts:
+github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=
+github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
+github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
+bitbucket.org ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPIQmuzMBuKdWeF4+a2sjSSpBK0iqitSQ+5BM9KhpexuGt20JpTVM7u5BDZngncgrqDMbWdxMWWOGtZ9UgbqgZE=
+bitbucket.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIazEu89wgQZ4bqs3d63QSMzYVa0MuJ2e2gKTKqu+UUO
+bitbucket.org ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQeJzhupRu0u0cdegZIa8e86EG2qOCsIsD1Xw0xSeiPDlCr7kq97NLmMbpKTX6Esc30NuoqEEHCuc7yWtwp8dI76EEEB1VqY9QJq6vk+aySyboD5QF61I/1WeTwu+deCbgKMGbUijeXhtfbxSxm6JwGrXrhBdofTsbKRUsrN1WoNgUa8uqN1Vx6WAJw1JHPhglEGGHea6QICwJOAr/6mrui/oB7pkaWKHj3z7d1IC4KWLtY47elvjbaTlkN04Kc/5LFEirorGYVbt15kAUlqGM65pk6ZBxtaO3+30LVlORZkxOh+LKL/BvbZ/iRNhItLqNyieoQj/uh/7Iv4uyH/cV/0b4WDSd3DptigWq84lJubb9t/DnZlrJazxyDCulTmKdOR7vs9gMTo+uoIrPSb8ScTtvw65+odKAlBj59dhnVp9zd7QUojOpXlL62Aw56U4oO+FALuevvMjiWeavKhJqlR7i5n9srYcrNV7ttmDw7kf/97P5zauIhxcjX+xHv4M=
+gitlab.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFSMqzJeV9rUzU4kWitGjeR4PWSa29SPqJ1fVkhtj3Hw9xjLVXVYrU9QlYWrOLXBpQ6KWjbjTDTdDkoohFzgbEY=
+
+Writing SSH key for checkout to "/home/circleci/.ssh/id_rsa"
+Writing SSH public key for checkout to "/home/circleci/.ssh/id_rsa.pub"
+Cloning git repository - git@github.com:luisejroblesci/circleci-cli.git
+        - Creating a blobless clone for better performance
+Checking out branch
+Your branch is up to date with 'origin/main'.
+HEAD is now at d0d1a86 bench run 1/1
+Cloning into '.'...
+remote: Enumerating objects: 7499, done.
+remote: Counting objects: 100% (74/74), done.
+remote: Compressing objects: 100% (50/50), done.
+remote: Total 7499 (delta 38), reused 29 (delta 23), pack-reused 7425 (from 2)
+Receiving objects: 100% (7499/7499), 1.45 MiB | 54.95 MiB/s, done.
+Resolving deltas: 100% (3907/3907), done.
+Reset branch 'main'
+```
+
+## 102: circleci run github.com/circleci-functions/setup-go@v0.5.1-684fd5b -- --version-file go.mod --golangci-lint-cache --checksum '{{ checksum "go.sum" }}_{{ checksum "clikit/go.sum" }}_{{ checksum "tools/go.sum" }}'
+- Status: ✅ succeeded
+- Duration: 32.7s
+- Exit Code: 0
+- Command: `#!/bin/bash -eo pipefail` … `circleci run github.com/circleci-functions/setup-go@v0.5.1-684fd5b -- --version-file go.mod --golangci-lint-cache --checksum '{{ checksum "go.sum" }}_{{ checksum "clikit/go.sum" }}_{{ checksum "tools/go.sum" }}'`
+### Output
+
+```text
+setup-go: resolved "1.27.1" → go1.27.1
+setup-go: go1.27.1 restored from cache at /home/circleci/.cache/setup-go/go1.27.1
+setup-go: go and gofmt resolve from /home/circleci/.go_workspace/bin
+```
+
+## 103: Restoring Go toolchain cache
+- Status: ✅ succeeded
+- Duration: 805ms
+### Output
+
+```text
+Found a cache from job 1 (https://app.circleci.com/workflow/c0b4f577-e69a-406b-894c-4b847c13a932/job/c05c3f60-dd29-45f3-8493-5e680248c2fc) at setup-go-toolchain-v1-linux-amd64-go1.27.1
+Size: 65 MiB
+Cached paths:
+  * /home/circleci/.cache/setup-go/go1.27.1
+
+Downloading cache archive... Downloading cache file in parallel
+
+Unarchiving cache...
+Extracting using zstd
+Extraction duration for setup-go-toolchain-v1-linux-amd64-go1.27.1: 719.587328ms
+```
+
+## 104: Restoring go module cache
+- Status: ✅ succeeded
+- Duration: 28.3s
+### Output
+
+_… 11890 earlier lines hidden; run `circleci job output get fea17512-adc7-45c6-83f6-9cadc8429f60 --step-num 104` for the full output._
+
+```text
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/LICENSE" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/LICENSE: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/dns/dnsmessage/svcb.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/dns/dnsmessage/svcb.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/PATENTS" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/PATENTS: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http/httpproxy/proxy.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http/httpproxy/proxy.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http/httpguts/guts.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http/httpguts/guts.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http/httpguts/httplex.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http/httpguts/httplex.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http2/hpack/huffman.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http2/hpack/huffman.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http2/hpack/encode.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http2/hpack/encode.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http2/hpack/hpack.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http2/hpack/hpack.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http3/http3.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http3/http3.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http2/hpack/static_table.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http2/hpack/static_table.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http2/hpack/tables.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/http2/hpack/tables.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/dns/dnsmessage/message.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/dns/dnsmessage/message.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/punycode.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/punycode.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/idna.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/idna.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/tables15.0.0.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/tables15.0.0.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/tables17.0.0.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/tables17.0.0.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/trie.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/trie.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/trieval.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/idna/trieval.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/conn.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/conn.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/body.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/body.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/http3.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/http3.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/doc.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/doc.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/errors.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/errors.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/qpack.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/qpack.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/qpack_decode.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/qpack_decode.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/roundtrip.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/roundtrip.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/qpack_static.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/qpack_static.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/quic.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/quic.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/qpack_encode.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/qpack_encode.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/stream.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/stream.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/server.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/server.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/settings.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/settings.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/varint.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/varint.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/transport.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/http3/transport.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/binary.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/binary.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/httpcommon/headermap.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/httpcommon/headermap.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/address.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/address.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/httpcommon/request.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/httpcommon/request.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/httpcommon/ascii.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/httpcommon/ascii.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/quic/quicwire/wire.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/internal/quic/quicwire/wire.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/link.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/link.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/lif.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/lif.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/sys_solaris_amd64.s" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/sys_solaris_amd64.s: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/sys.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/sys.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/syscall.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/syscall.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/nettest/nettest_stub.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/nettest/nettest_stub.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/zsys_solaris_amd64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/lif/zsys_solaris_amd64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/nettest/conntest.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/nettest/conntest.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/config.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/config.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/nettest/nettest_unix.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/nettest/nettest_unix.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/nettest/nettest_windows.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/nettest/nettest_windows.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/ack_delay.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/ack_delay.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/acks.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/acks.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/atomic_bits.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/atomic_bits.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_loss.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_loss.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/congestion_reno.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/congestion_reno.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/nettest/nettest.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/nettest/nettest.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_close.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_close.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/retry.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/retry.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/sent_packet.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/sent_packet.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/sent_packet_list.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/sent_packet_list.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/sent_val.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/sent_val.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/skip.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/skip.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/stateless_reset.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/stateless_reset.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/stream.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/stream.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/stream_limits.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/stream_limits.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/rangeset.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/rangeset.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_recv.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_recv.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/tls.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/tls.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_send.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_send.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_streams.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_streams.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/crypto_stream.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/crypto_stream.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/dgram.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/dgram.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/doc.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/doc.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_flow.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_flow.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/endpoint.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/endpoint.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_id.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/conn_id.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/errors.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/errors.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/packet_protection.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/packet_protection.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/packet_writer.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/packet_writer.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/path.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/path.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/ping.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/ping.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/pipe.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/pipe.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/qlog.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/qlog.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/queue.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/queue.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/quic.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/quic.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/race_disabled.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/race_disabled.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/race_enabled.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/race_enabled.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/loss.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/loss.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/frame_debug.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/frame_debug.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/gate.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/gate.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/idle.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/idle.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/log.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/log.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/packet.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/packet.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/math.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/math.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/pacer.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/pacer.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/packet_number.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/packet_number.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/packet_parser.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/packet_parser.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_arm64.s" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_arm64.s: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gc_s390x.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gc_s390x.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp_packetconn.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp_packetconn.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_arm64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_arm64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/rtt.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/rtt.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/LICENSE" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/LICENSE: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/PATENTS" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/PATENTS: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_arm64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_arm64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/asm_aix_ppc64.s" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/asm_aix_ppc64.s: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/asm_darwin_arm64_gc.s" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/asm_darwin_arm64_gc.s: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/asm_darwin_x86_gc.s" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/asm_darwin_x86_gc.s: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/byteorder.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/byteorder.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gc_x86.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gc_x86.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp_darwin.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp_darwin.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/transport_params.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/transport_params.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_arm.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_arm.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp_linux.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp_linux.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp_msg.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp_msg.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp_other.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/net/quic/udp_other.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_loong64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_loong64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_noinit.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_noinit.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_aix.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_aix.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gccgo_x86.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gccgo_x86.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gccgo_x86.c" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gccgo_x86.c: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gc_x86.s" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gc_x86.s: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gccgo_arm64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gccgo_arm64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_arm.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_arm.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gccgo_s390x.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gccgo_s390x.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_darwin_arm64_other.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_darwin_arm64_other.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_darwin_arm64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_darwin_arm64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_darwin_x86.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_darwin_x86.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gc_arm64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_gc_arm64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_netbsd_arm64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_netbsd_arm64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_loong64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_loong64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_loong64.s" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_loong64.s: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_ppc64x.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_ppc64x.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_mips64x.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_mips64x.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_riscv64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_riscv64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_mipsx.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_mipsx.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_s390x.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_s390x.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_mips64x.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_linux_mips64x.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_windows.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_windows.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/runtime_auxv.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/runtime_auxv.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_ppc64x.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_ppc64x.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/proc_cpuinfo_linux.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/proc_cpuinfo_linux.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_riscv64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_riscv64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_windows_arm64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_windows_arm64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_s390x.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_s390x.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/endian_little.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/endian_little.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/endian_big.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/endian_big.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_s390x.s" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_s390x.s: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/hwcap_linux.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/hwcap_linux.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_x86.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_x86.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_wasm.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_wasm.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/parse.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/parse.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/syscall_aix_gccgo.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/syscall_aix_gccgo.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_zos.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_zos.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_arm64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_arm64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/runtime_auxv_go121.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/runtime_auxv_go121.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_zos_s390x.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_zos_s390x.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_openbsd_arm64.s" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_openbsd_arm64.s: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_arm.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_arm.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_ppc64x.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_ppc64x.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_openbsd_arm64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_openbsd_arm64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_riscv64.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_riscv64.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_mips64x.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_mips64x.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_x86.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/cpu_other_x86.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/syscall_darwin_arm64_gc.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/syscall_darwin_arm64_gc.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/syscall_aix_ppc64_gc.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/syscall_aix_ppc64_gc.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/syscall_darwin_x86_gc.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/syscall_darwin_x86_gc.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/zcpu_windows.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/sys/cpu/zcpu_windows.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/LICENSE" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/LICENSE: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/transform/transform.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/transform/transform.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/secure/bidirule/bidirule.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/secure/bidirule/bidirule.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/PATENTS" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/PATENTS: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/bracket.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/bracket.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/bidi.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/bidi.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/core.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/core.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/prop.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/prop.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/composition.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/composition.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/tables15.0.0.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/tables15.0.0.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/tables17.0.0.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/tables17.0.0.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/iter.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/iter.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/forminfo.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/forminfo.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/normalize.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/normalize.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/trieval.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/bidi/trieval.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/input.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/input.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/readwriter.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/readwriter.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/tables15.0.0.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/tables15.0.0.go: permission denied
+Skipping writing "home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/transform.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/transform.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/tables17.0.0.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/tables17.0.0.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/trie.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/golang.org/x/text/unicode/norm/trie.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/weak/doc.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/weak/doc.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/modules.txt" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/vendor/modules.txt: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/weak/pointer.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/weak/pointer.go: permission denied
+Skipping writing "/home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/weak/pointer_test.go" - open /home/circleci/.go_workspace/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/weak/pointer_test.go: permission denied
+Extraction duration for v1--go-mod-linux-amd64-iqYmJ4wWsmus3k82Eaf121oZUdzAjuOnfbGJsizOdDA=_7DrK5ZqGzM+Cr_BXBTdJ2Nx9AVhsROpMAVO9ZkzoAdA=_HSmSk89QaXybkEYhZwn0WcCx3QkRFs+uAMTwISsmGZo=-1789516800: 28.330822454s
+```
+
+## 105: Restoring go build cache
+- Status: ✅ succeeded
+- Duration: 169ms
+### Output
+
+```text
+Found a cache from job 12 (https://app.circleci.com/workflow/c0b4f577-e69a-406b-894c-4b847c13a932/job/fbf426bc-ad0e-467a-92ea-4a3f053a1aad) at v1--go-build-deploy-linux-amd64-1789516800-iqYmJ4wWsmus3k82Eaf121oZUdzAjuOnfbGJsizOdDA=_7DrK5ZqGzM+Cr_BXBTdJ2Nx9AVhsROpMAVO9ZkzoAdA=_HSmSk89QaXybkEYhZwn0WcCx3QkRFs+uAMTwISsmGZo=
+Size: 2.1 KiB
+Cached paths:
+  * /home/circleci/.cache/go-build
+
+Downloading cache archive... Downloading cache file in parallel
+
+Unarchiving cache...
+Extracting using zstd
+Extraction duration for v1--go-build-deploy-linux-amd64-1789516800-iqYmJ4wWsmus3k82Eaf121oZUdzAjuOnfbGJsizOdDA=_7DrK5ZqGzM+Cr_BXBTdJ2Nx9AVhsROpMAVO9ZkzoAdA=_HSmSk89QaXybkEYhZwn0WcCx3QkRFs+uAMTwISsmGZo=: 81.98577ms
+```
+
+## 106: Restoring golangci-lint cache
+- Status: ✅ succeeded
+- Duration: 118ms
+### Output
+
+```text
+Found a cache from job 12 (https://app.circleci.com/workflow/c0b4f577-e69a-406b-894c-4b847c13a932/job/fbf426bc-ad0e-467a-92ea-4a3f053a1aad) at v1--golangci-lint-deploy-linux-amd64-iqYmJ4wWsmus3k82Eaf121oZUdzAjuOnfbGJsizOdDA=_7DrK5ZqGzM+Cr_BXBTdJ2Nx9AVhsROpMAVO9ZkzoAdA=_HSmSk89QaXybkEYhZwn0WcCx3QkRFs+uAMTwISsmGZo=-1789516800
+Size: 16 B
+Cached paths:
+  * /home/circleci/.cache/golangci-lint
+
+Downloading cache archive... Downloading cache file in parallel
+
+Unarchiving cache...
+Extracting using zstd
+Extraction duration for v1--golangci-lint-deploy-linux-amd64-iqYmJ4wWsmus3k82Eaf121oZUdzAjuOnfbGJsizOdDA=_7DrK5ZqGzM+Cr_BXBTdJ2Nx9AVhsROpMAVO9ZkzoAdA=_HSmSk89QaXybkEYhZwn0WcCx3QkRFs+uAMTwISsmGZo=-1789516800: 25.480721ms
+```
+
+## 107: go version
+- Status: ✅ succeeded
+- Duration: 155ms
+- Exit Code: 0
+- Command: `#!/bin/bash -eo pipefail` … `go version`
+### Output
+
+```text
+go version go1.27.1 linux/amd64
+```
+
+## 108: Install go-task
+- Status: ✅ succeeded
+- Duration: 525ms
+- Exit Code: 0
+- Command: `#!/bin/bash -eo pipefail` … `sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b "$HOME/.local/bin"` …
+### Output
+
+```text
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+100   9406 100   9406   0      0 287.5k      0                              0
+go-task/task info checking GitHub for latest tag
+go-task/task debug http_download https://github.com/go-task/task/releases/latest
+go-task/task info found version: 3.53.1 for v3.53.1/linux/amd64
+go-task/task debug downloading files into /tmp/tmp.vvu8W0QffQ
+go-task/task debug http_download https://github.com/go-task/task/releases/download/v3.53.1/task_linux_amd64.tar.gz
+go-task/task debug http_download https://github.com/go-task/task/releases/download/v3.53.1/task_checksums.txt
+go-task/task info installed /home/circleci/.local/bin/task
+```
+
+## 109: Register QEMU for cross-architecture builds
+- Status: ✅ succeeded
+- Duration: 2.1s
+- Exit Code: 0
+- Command: `#!/bin/bash -eo pipefail` … `docker run --privileged --rm tonistiigi/binfmt --install arm64`
+### Output
+
+```text
+Unable to find image 'tonistiigi/binfmt:latest' locally
+latest: Pulling from tonistiigi/binfmt
+0c46aa6e9c41: Pull complete
+56685a25fbf3: Pull complete
+76bf583f0cc9: Download complete
+44136fa355b3: Download complete
+c9e92217fbff: Download complete
+Digest: sha256:400a4873b838d1b89194d982c45e5fb3cda4593fbfd7e08a02e76b03b21166f0
+Status: Downloaded newer image for tonistiigi/binfmt:latest
+installing: arm64 OK
+{
+  "supported": [
+    "linux/amd64",
+    "linux/amd64/v2",
+    "linux/amd64/v3",
+    "linux/amd64/v4",
+    "linux/arm64",
+    "linux/386"
+  ],
+  "emulators": [
+    "llvm-21-runtime.binfmt",
+    "python3.14",
+    "qemu-aarch64"
+  ]
+}
+```
+
+## 110: Create a buildx builder
+- Status: ✅ succeeded
+- Duration: 637ms
+- Exit Code: 0
+- Command: `#!/bin/bash -eo pipefail` … `docker buildx create --use --driver docker-container`
+### Output
+
+```text
+pensive_wright
+```
+
+## 111: Log in to Docker Hub
+- Status: ✅ succeeded
+- Duration: 155ms
+- Exit Code: 0
+- Command: `#!/bin/bash -eo pipefail` … `if [ -z "${DOCKER_HUB_USERNAME:-}" ]; then` …
+### Output
+
+```text
+No Docker Hub credentials — skipping login (snapshot builds do not push).
+```
+
+## 112: sudo apt update --yes
+- Status: ✅ succeeded
+- Duration: 6.6s
+- Exit Code: 0
+- Command: `#!/bin/bash -eo pipefail` … `sudo apt update --yes`
+### Output
+
+```text
+Hit:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute InRelease
+Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates InRelease [137 kB]
+Get:3 https://download.docker.com/linux/ubuntu resolute InRelease [32.5 kB]
+Get:4 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-backports InRelease [137 kB]
+Get:5 http://dl.google.com/linux/chrome/deb stable InRelease [2548 B]
+Get:6 https://download.docker.com/linux/ubuntu resolute/stable amd64 Packages [26.1 kB]
+Get:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
+Get:8 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/main amd64v3 Packages [617 kB]
+Get:9 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/main Translation-en [147 kB]
+Get:10 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/main amd64 Components [97.7 kB]
+Get:11 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/main amd64 c-n-f Metadata [5756 B]
+Get:12 http://dl.google.com/linux/chrome/deb stable/main amd64 Packages [1408 B]
+Get:13 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/universe amd64v3 Packages [295 kB]
+Get:14 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/universe Translation-en [93.7 kB]
+Get:15 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1408 B]
+Get:16 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/universe amd64 Components [188 kB]
+Get:17 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/universe amd64 c-n-f Metadata [4704 B]
+Get:18 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/restricted amd64v3 Packages [413 kB]
+Get:19 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/restricted Translation-en [80.0 kB]
+Get:20 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/restricted amd64 c-n-f Metadata [392 B]
+Get:21 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/multiverse amd64v3 Packages [11.6 kB]
+Get:22 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/multiverse Translation-en [3172 B]
+Get:23 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/multiverse amd64 c-n-f Metadata [256 B]
+Get:24 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-backports/universe amd64v3 Packages [3148 B]
+Get:25 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-backports/universe Translation-en [7988 B]
+Get:26 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-backports/universe amd64 Components [1060 B]
+Get:27 http://security.ubuntu.com/ubuntu resolute-security InRelease [137 kB]
+Get:28 https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu resolute InRelease [27.4 kB]
+Get:29 https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu resolute/main amd64v3 Packages [25.0 kB]
+Get:30 http://security.ubuntu.com/ubuntu resolute-security/main amd64v3 Packages [479 kB]
+Get:31 http://security.ubuntu.com/ubuntu resolute-security/main Translation-en [113 kB]
+Get:32 http://security.ubuntu.com/ubuntu resolute-security/main amd64 Components [46.6 kB]
+Get:33 http://security.ubuntu.com/ubuntu resolute-security/main amd64 c-n-f Metadata [4616 B]
+Get:34 http://security.ubuntu.com/ubuntu resolute-security/universe amd64v3 Packages [173 kB]
+Get:35 http://security.ubuntu.com/ubuntu resolute-security/universe Translation-en [54.5 kB]
+Get:36 http://security.ubuntu.com/ubuntu resolute-security/universe amd64 Components [43.4 kB]
+Get:37 http://security.ubuntu.com/ubuntu resolute-security/universe amd64 c-n-f Metadata [3552 B]
+Get:38 http://security.ubuntu.com/ubuntu resolute-security/restricted amd64v3 Packages [399 kB]
+Get:39 http://security.ubuntu.com/ubuntu resolute-security/restricted Translation-en [77.7 kB]
+Get:40 http://security.ubuntu.com/ubuntu resolute-security/restricted amd64 c-n-f Metadata [396 B]
+Get:41 http://security.ubuntu.com/ubuntu resolute-security/multiverse amd64v3 Packages [10.9 kB]
+Get:42 http://security.ubuntu.com/ubuntu resolute-security/multiverse Translation-en [2844 B]
+Fetched 3908 kB in 3s (1532 kB/s)
+267 packages can be upgraded. Run 'apt list --upgradable' to see them.
+Notice: Some sources can be modernized. Run 'apt modernize-sources' to do so.
+```
+
+## 113: Install snapcraft
+- Status: ✅ succeeded
+- Duration: 17.9s
+- Exit Code: 0
+- Command: `#!/bin/bash -eo pipefail` … `sudo apt install snapd --yes` …
+### Output
+
+```text
+Installing:
+  snapd
+
+Suggested packages:
+  zenity  | kdialog
+
+Summary:
+  Upgrading: 0, Installing: 1, Removing: 0, Not Upgrading: 267
+  Download size: 42.6 MB
+  Space needed: 147 MB / 142 GB available
+
+Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu resolute-updates/main amd64v3 snapd amd64 2.76.3+ubuntu26.04 [42.6 MB]
+Fetched 42.6 MB in 0s (156 MB/s)
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+debconf: falling back to frontend: Readline
+Selecting previously unselected package snapd.
+(Reading database ... 149533 files and directories currently installed.)
+Preparing to unpack .../snapd_2.76.3+ubuntu26.04_amd64v3.deb ...
+Unpacking snapd (2.76.3+ubuntu26.04) ...
+Setting up snapd (2.76.3+ubuntu26.04) ...
+Created symlink '/etc/systemd/user/sockets.target.wants/snapd.session-agent.socket' → '/usr/lib/systemd/user/snapd.session-agent.socket'.
+Created symlink '/etc/systemd/system/sockets.target.wants/snapd.socket' → '/usr/lib/systemd/system/snapd.socket'.
+Created symlink '/etc/systemd/system/multi-user.target.wants/snapd.service' → '/usr/lib/systemd/system/snapd.service'.
+Created symlink '/etc/systemd/system/multi-user.target.wants/snapd.apparmor.service' → '/usr/lib/systemd/system/snapd.apparmor.service'.
+Created symlink '/etc/systemd/system/multi-user.target.wants/snapd.autoimport.service' → '/usr/lib/systemd/system/snapd.autoimport.service'.
+Created symlink '/etc/systemd/system/multi-user.target.wants/snapd.core-fixup.service' → '/usr/lib/systemd/system/snapd.core-fixup.service'.
+Created symlink '/etc/systemd/system/multi-user.target.wants/snapd.recovery-chooser-trigger.service' → '/usr/lib/systemd/system/snapd.recovery-chooser-trigger.service'.
+Created symlink '/etc/systemd/system/multi-user.target.wants/snapd.seeded.service' → '/usr/lib/systemd/system/snapd.seeded.service'.
+Created symlink '/etc/systemd/system/cloud-final.service.wants/snapd.seeded.service' → '/usr/lib/systemd/system/snapd.seeded.service'.
+Created symlink '/etc/systemd/system/timers.target.wants/snapd.snap-repair.timer' → '/usr/lib/systemd/system/snapd.snap-repair.timer'.
+Created symlink '/etc/systemd/system/final.target.wants/snapd.system-shutdown.service' → '/usr/lib/systemd/system/snapd.system-shutdown.service'.
+snapd.failure.service is a disabled or a static unit, not starting it.
+snapd.gpio-chardev-setup.target is a disabled or a static unit, not starting it.
+snapd.mounts.target is a disabled or a static unit, not starting it.
+snapd.snap-repair.service is a disabled or a static unit, not starting it.
+Processing triggers for dbus (1.16.2-2ubuntu4) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Scanning processes...
+Scanning linux images...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-09-18T03:20:35Z INFO Waiting for automatic snapd restart...
+2026-09-18T03:20:36Z INFO Waiting for automatic snapd restart...
+2026-09-18T03:20:37Z INFO Waiting for automatic snapd restart...
+2026-09-18T03:20:38Z INFO Waiting for automatic snapd restart...
+snapcraft 9.0.1 from Canonical✓ installed
+WARNING: There is 1 new warning. See 'snap warnings'.
+```
+
+## 114: Install choco
+- Status: ✅ succeeded
+- Duration: 7s
+- Exit Code: 0
+- Command: `#!/bin/bash -eo pipefail` … `sudo cp tools/choco.sh /usr/local/bin/choco` …
+### Output
+
+_… 1 earlier lines hidden; run `circleci job output get fea17512-adc7-45c6-83f6-9cadc8429f60 --step-num 114` for the full output._
+
+```text
+latest: Pulling from chocolatey/choco
+4f4fb700ef54: Pull complete
+ad66f2fec3d4: Pull complete
+57b1fb419d30: Pull complete
+0954d0a700a9: Pull complete
+3af9207d3799: Pull complete
+f0bdcb8c72d7: Pull complete
+Digest: sha256:3bf634fac58ebc2e84e5efe719254e08d1f4cb400025ec169bbdd6e5bf0c22b0
+Status: Downloaded newer image for chocolatey/choco:latest
+Chocolatey v2.7.4
+This is a listing of all of the different things you can pass to choco.
+
+Options and Switches
+
+ -v, --version
+     Version - Prints out the Chocolatey version.
+
+Commands
+
+ * apikey - retrieves, saves or deletes an API key for a particular source
+ * cache - Manage the local HTTP caches used to store queries (v2.1.0+)
+ * config - Retrieve and configure config file settings
+ * export - exports list of currently installed packages
+ * feature - view and configure choco features
+ * features - view and configure choco features (alias for feature)
+ * find - searches remote packages (alias for search)
+ * help - displays top level help information for choco
+ * info - retrieves package information. Shorthand for choco search pkgname --exact --verbose
+ * install - installs packages using configured sources
+ * license - display Chocolatey license information (v2.5.0+)
+ * list - lists local packages
+ * new - creates template files for creating a new Chocolatey package
+ * outdated - retrieves information about packages that are outdated. Similar to upgrade all --noop
+ * pack - packages nuspec, scripts, and other Chocolatey package resources into a nupkg file
+ * pin - suppress upgrades for a package
+ * push - pushes a compiled nupkg to a source
+ * rule - view or list implemented package rules (v2.3.0+)
+ * search - searches remote packages
+ * setapikey - retrieves, saves or deletes an API key for a particular source (alias for apikey)
+ * source - view and configure default sources
+ * sources - view and configure default sources (alias for source)
+ * support - provides support information (v2.5.0+)
+ * template - get information about installed templates
+ * templates - get information about installed templates (alias for template)
+ * uninstall - uninstalls a package
+ * unpackself - [DEPRECATED] will be removed in v3.0.0 - re-installs Chocolatey base files
+ * upgrade - upgrades packages from various sources
+
+
+Please run chocolatey with `choco command -help` for specific help on
+ each command.
+
+How To Pass Options / Switches
+
+You can pass options and switches in the following ways:
+
+ * Unless stated otherwise, an option/switch should only be passed one
+   time. Otherwise you may find weird/non-supported behavior.
+ * `-`, `/`, or `--` (one character switches should not use `--`)
+ * **Option Bundling / Bundled Options**: One character switches can be
+   bundled. e.g. `-d` (debug), `-f` (force), `-v` (verbose), and `-y`
+   (confirm yes) can be bundled as `-dfvy`.
+ * NOTE: If `debug` or `verbose` are bundled with local options
+   (not the global ones above), some logging may not show up until after
+   the local options are parsed.
+ * **Use Equals**: You can also include or not include an equals sign
+   `=` between options and values.
+ * **Quote Values**: When you need to quote an entire argument, such as
+   when using spaces, please use a combination of double quotes and
+   apostrophes (`"'value'"`). In cmd.exe you can just use double quotes
+   (`"value"`) but in powershell.exe you should use backticks
+   (`` `"value`" ``) or apostrophes (`'value'`). Using the combination
+   allows for both shells to work without issue, except for when the next
+   section applies.
+ * **Pass quotes in arguments**: When you need to pass quoted values to
+   to something like a native installer, you are in for a world of fun. In
+   cmd.exe you must pass it like this: `-ia "/yo=""Spaces spaces"""`. In
+   PowerShell.exe, you must pass it like this: `-ia '/yo=""Spaces spaces""'`.
+   No other combination will work. In PowerShell.exe if you are on version
+   v3+, you can try `--%` before `-ia` to just pass the args through as is,
+   which means it should not require any special workarounds.
+ * **Periods in PowerShell**: If you need to pass a period as part of a
+   value or a path, PowerShell doesn't always handle it well. Please
+   quote those values using "Quote Values" section above.
+ * Options and switches apply to all items passed, so if you are
+   installing multiple packages, and you use `--version=1.0.0`, choco
+   is going to look for and try to install version 1.0.0 of every
+   package passed. So please split out multiple package calls when
+   wanting to pass specific options.
+
+Scripting / Integration - Best Practices / Style Guide
+
+When writing scripts, such as PowerShell scripts passing options and
+switches, there are some best practices to follow to ensure that you
+don't run into issues later. This also applies to integrations that
+are calling Chocolatey and parsing output. Chocolatey **uses**
+PowerShell, but it is an exe, so it cannot return PowerShell objects.
+
+Following these practices ensures both readability of your scripts AND
+compatibility across different versions and editions of Chocolatey.
+Following this guide will ensure your experience is not frustrating
+based on choco not receiving things you think you are passing to it.
+
+ * For consistency, always use `choco`, not `choco.exe`.
+ * Always have the command as the first argument to `choco`. e.g.
+   `choco install`, where `install` is the command.
+ * If there is a subcommand, ensure that is the second argument. e.g.
+   `choco source list`, where `source` is the command and `list` is the
+   subcommand.
+ * Typically the subject comes next. If installing packages, the
+   subject would be the package names, e.g. `choco install pkg1 pkg2`.
+ * Never use 'nupkg' or point directly to a nupkg file UNLESS using
+   'choco push'. Use the source folder instead, e.g. `choco install
+   <package id> --source="'c:\folder\with\package'"` instead of
+   `choco install DoNotDoThis.1.0.nupkg` or `choco install DoNotDoThis
+    --source="'c:\folder\with\package\DoNotDoThis.1.0.nupkg'"`.
+ * Switches and parameters are called simply options. Options come
+   after the subject. e.g. `choco install pkg1 --debug --verbose`.
+ * Never use the force option (`--force`/`-f`) in scripts (or really
+   otherwise as a default mode of use). Force is an override on
+   Chocolatey behavior. If you are wondering why Chocolatey isn't doing
+   something like the documentation says it should, it's likely because
+   you are using force. Stop.
+ * Always use full option name. If the short option is `-n`, and the
+   full option is `--name`, use `--name`. The only acceptable short
+   option for use in scripts is `-y`. Find option names in help docs
+   online or through `choco --help` /`choco [Command Name] --help`.
+ * For scripts that are running automated, always use `-y`. Do note
+   that even with `-y` passed, some things / state issues detected will
+   temporarily stop for input - the key here is temporarily. They will
+   continue without requiring any action after the temporary timeout
+   (typically 30 seconds).
+ * Full option names are prepended with two dashes, e.g. `--` or
+   `--debug --verbose --ignore-proxy`.
+ * When setting a value to an option, always put an equals (`=`)
+   between the name and the setting, e.g. `--source="'local'"`.
+ * When setting a value to an option, always surround the value
+   properly with double quotes bookending apostrophes, e.g.
+   `--source="'internal_server'"`.
+ * If you are building PowerShell scripts, you can most likely just
+   simply use apostrophes surrounding option values, e.g.
+   `--source='internal_server'`.
+ * Prefer upgrade to install in scripts. You can't `install` to a newer
+   version of something, but you can `choco upgrade` which will do both
+   upgrade or install (unless switched off explicitly).
+ * If you are sharing the script with others, pass `--source` to be
+   explicit about where the package is coming from. Use full link and
+   not source name ('https://community.chocolatey.org/api/v2' versus
+   'chocolatey').
+ * If parsing output, you might want to use `--limit-output`/`-r` to
+   get output in a more machine parseable format. NOTE: Not all
+   commands handle return of information in an easily digestible
+   output.
+ * Use exit codes to determine status. Chocolatey exits with 0 when
+   everything worked appropriately and other exits codes like 1 when
+   things error. There are package specific exit codes that are
+   recommended to be used and reboot indicating exit codes as well. To
+   check exit code when using PowerShell, immediately call
+   `$exitCode = $LASTEXITCODE` to get the value choco exited with.
+
+Here's an example following bad practices (line breaks added for
+ readability):
+
+  `choco install pkg1 -y -params '/Option:Value /Option2:value with
+   spaces' --c4b-option 'Yaass' --option-that-is-new 'dude upgrade'`
+
+Now here is that example written with best practices (again line
+ breaks added for readability - there are not line continuations
+ for choco):
+
+  `choco upgrade pkg1 -y --source="'https://community.chocolatey.org/api/v2'"
+   --package-parameters="'/Option:Value /Option2:value with spaces'"
+   --c4b-option="'Yaass'" --option-that-is-new="'dude upgrade'"`
+
+Note the differences between the two:
+ * Which is more self-documenting?
+ * Which will allow for the newest version of something installed or
+   upgraded to (which allows for more environmental consistency on
+   packages and versions)?
+ * Which may throw an error on a badly passed option?
+ * Which will throw errors on unknown option values? See explanation
+   below.
+
+Chocolatey ignores options it doesn't understand, but it can only
+ ignore option values if they are tied to the option with an
+ equals sign ('='). Note those last two options in the examples above?
+ If you roll off of a commercial edition or someone with older version
+ attempts to run the badly crafted script `--c4b-option 'Yaass'
+ --option-that-is-new 'dude upgrade'`, they are likely to see errors on
+ 'Yaass' and 'dude upgrade' because they are not explicitly tied to the
+ option they are written after. Now compare that to the other script.
+ Choco will ignore `--c4b-option="'Yaass'"` and
+ `--option-that-is-new="'dude upgrade'"` as a whole when it doesn't
+ register the options. This means that your script doesn't error.
+
+Following these scripting best practices will ensure your scripts work
+ everywhere they are used and with newer versions of Chocolatey.
+
+
+Default Options and Switches
+```
+
+## 115: task ci:release
+- Status: ❌ failed
+- Duration: 367ms
+- Exit Code: 201
+- Command: `#!/bin/bash -eo pipefail` … `task ci:release`
+### Output
+
+```text
+task: [ci:release] if [ -n "${CI:-}" ]; then
+  git config --global user.email 'ops+deploy-bot@circleci.com'
+  git config --global user.name 'circleci'
+fi
+
+task: [ci:release] git tag -a 'v1.0.186' -m 'Release v1.0.186'
+task: [ci:release] git push origin 'v1.0.186'
+ERROR: The key you are authenticating with has been marked as read only.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+task: Failed to run task "ci:release": exit status 128
+
+Exited with code exit status 201
+```
+
+## 116: Uploading artifacts
+- Status: ✅ succeeded
+- Duration: 11ms
+### Output
+
+```text
+Uploading /home/circleci/project/dist to dist
+  No artifact files found at /home/circleci/project/dist
+Total size uploaded: 0 B
+```
+
+## 117: Saving golangci-lint cache
+- Status: ✅ succeeded
+- Duration: 93ms
+### Output
+
+```text
+Skipping cache generation, cache already exists for key: v1--golangci-lint-deploy-linux-amd64-iqYmJ4wWsmus3k82Eaf121oZUdzAjuOnfbGJsizOdDA=_7DrK5ZqGzM+Cr_BXBTdJ2Nx9AVhsROpMAVO9ZkzoAdA=_HSmSk89QaXybkEYhZwn0WcCx3QkRFs+uAMTwISsmGZo=-1789516800, or is locked for use by another job
+Found one created at 2026-09-17 15:03:14 +0000 UTC by build number: 12
+```
+
+## 118: Saving go build cache
+- Status: ✅ succeeded
+- Duration: 77ms
+### Output
+
+```text
+Skipping cache generation, cache already exists for key: v1--go-build-deploy-linux-amd64-1789516800-iqYmJ4wWsmus3k82Eaf121oZUdzAjuOnfbGJsizOdDA=_7DrK5ZqGzM+Cr_BXBTdJ2Nx9AVhsROpMAVO9ZkzoAdA=_HSmSk89QaXybkEYhZwn0WcCx3QkRFs+uAMTwISsmGZo=, or is locked for use by another job
+Found one created at 2026-09-17 15:03:14 +0000 UTC by build number: 12
+```
+
+## 119: Saving go module cache
+- Status: ✅ succeeded
+- Duration: 63ms
+### Output
+
+```text
+Skipping cache generation, cache already exists for key: v1--go-mod-linux-amd64-iqYmJ4wWsmus3k82Eaf121oZUdzAjuOnfbGJsizOdDA=_7DrK5ZqGzM+Cr_BXBTdJ2Nx9AVhsROpMAVO9ZkzoAdA=_HSmSk89QaXybkEYhZwn0WcCx3QkRFs+uAMTwISsmGZo=-1789516800, or is locked for use by another job
+Found one created at 2026-09-17 14:55:54 +0000 UTC by build number: 1
+```
+[exit code: 0]
