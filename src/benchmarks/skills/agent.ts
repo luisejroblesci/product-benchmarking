@@ -60,12 +60,26 @@ function retryMiddleware(counter: { retries: number }, signal: AbortSignal): Lan
   };
 }
 
-function stringifyOutput(output: unknown): string {
+/**
+ * Renders a tool result for the transcript. Mirrors what the model sees: for MCP-style results the
+ * text parts, followed by `structuredContent` when present. The CircleCI MCP server puts the actual
+ * data in `structuredContent` and only a one-line summary ("Found 2 job(s)") in `content`, so
+ * dropping it left MCP transcripts with ~14-byte outputs and gave the judge an empty trace.
+ */
+export function stringifyOutput(output: unknown): string {
   if (typeof output === 'string') return output;
   if (output && typeof output === 'object' && 'content' in output && Array.isArray((output as { content: unknown[] }).content)) {
-    // MCP-style { content: [{type:'text', text}] }
-    const parts = (output as { content: Array<{ type?: string; text?: string }> }).content;
-    if (parts.every((p) => p.type === 'text')) return parts.map((p) => p.text ?? '').join('\n');
+    // MCP-style { content: [{type:'text', text}], structuredContent? }
+    const { content: parts, structuredContent } = output as {
+      content: Array<{ type?: string; text?: string }>; structuredContent?: unknown;
+    };
+    if (parts.every((p) => p.type === 'text')) {
+      const text = parts.map((p) => p.text ?? '').join('\n');
+      if (structuredContent === undefined) return text;
+      let structured: string;
+      try { structured = JSON.stringify(structuredContent); } catch { structured = String(structuredContent); }
+      return text ? `${text}\n${structured}` : structured;
+    }
   }
   try { return JSON.stringify(output, null, 2); } catch { return String(output); }
 }

@@ -1,0 +1,196 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Session transcript</title>
+<style>
+  :root{--bg:#F6F8FA;--surface:#fff;--surface2:#F0F3F6;--border:#D0D7DE;--text:#1A1F29;--muted:#57606A;--teal:#00B89C;--amber:#D97706;--pass:#16A34A;--fail:#DC2626;--link:#0969DA;}
+  @media(prefers-color-scheme:dark){:root{--bg:#0D1117;--surface:#161B22;--surface2:#1C2129;--border:#30363D;--text:#E6EDF3;--muted:#8B949E;--teal:#02D1AD;--amber:#F59E0B;--pass:#3FB950;--fail:#F85149;--link:#58A6FF;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;padding:32px 24px;max-width:1200px;margin:0 auto;line-height:1.45;}
+  h1{font-size:20px;font-weight:600;margin:0 0 4px;}
+  h2{font-size:15px;font-weight:600;margin:32px 0 10px;}
+  a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+  .meta{color:var(--muted);font-size:13px;margin-bottom:20px;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;}
+  .card-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px;}
+  .card-val{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:8px;background:var(--surface);}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;}
+  td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top;font-variant-numeric:tabular-nums;}
+  tr:last-child td{border-bottom:none}
+  code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;}
+  .pass,.pos{color:var(--pass)} .fail,.neg{color:var(--fail)} .muted{color:var(--muted)} .teal{color:var(--teal)} .amber{color:var(--amber)}
+  .note{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;margin:16px 0;}
+  .badge{display:inline-block;padding:1px 7px;border-radius:10px;font-size:11px;border:1px solid var(--border);white-space:nowrap;}
+  .badge.completed{color:var(--pass);border-color:var(--pass)} .badge.error{color:var(--fail);border-color:var(--fail)}
+  .badge.skipped{color:var(--muted)} .badge.judge_error{color:var(--amber);border-color:var(--amber)}
+  @media(max-width:600px){body{padding:16px}td,th{padding:6px 8px}}
+
+  body{max-width:1600px}
+  .cols{display:grid;grid-template-columns:1fr;gap:16px}
+  .cols.two{grid-template-columns:1fr 1fr}
+  @media(max-width:900px){.cols.two{grid-template-columns:1fr}}
+  .col{min-width:0}
+  .hdr h2{margin:0 0 6px;font-size:15px}
+  .kv{display:grid;grid-template-columns:max-content 1fr;gap:2px 12px;font-size:12px}
+  .kv dt{color:var(--muted)} .kv dd{margin:0;overflow-wrap:anywhere}
+  details{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin:8px 0;}
+  details>summary{padding:8px 12px;cursor:pointer;font-size:13px;list-style-position:inside}
+  details .body{padding:0 12px 12px}
+  details details{background:var(--surface2)}
+  .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:10px 0 4px}
+  pre{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:8px 10px;margin:0;white-space:pre-wrap;overflow-wrap:anywhere;max-height:480px;overflow:auto}
+  details details pre{background:var(--surface)}
+  .reason pre{font-style:italic;color:var(--muted)}
+  .end{border-left:3px solid var(--teal)}
+  .err{color:var(--fail)}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;font-size:13px;margin-bottom:12px}
+</style></head><body>
+<h1>Session transcript</h1>
+<div class="meta"><a href="report.html">← report</a> <span id="cmpLinks"></span></div>
+<div class="toolbar"><button id="expand" type="button">Expand all</button><button id="collapse" type="button">Collapse all</button></div>
+<div id="root" class="cols"></div>
+<script>
+(function () {
+  'use strict';
+  function esc(v) {
+    return String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function safePath(p) {
+    if (!p) return null;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(p) || p.charAt(0) === '/' || p.charAt(0) === '\\' || p.split('/').indexOf('..') !== -1) return null;
+    return p;
+  }
+  function urlFor(p) { return p.split('/').map(encodeURIComponent).join('/'); }
+  function fmtMs(ms) {
+    if (ms == null) return '–';
+    if (ms < 1000) return Math.round(ms) + 'ms';
+    if (ms < 60000) return (ms / 1000).toFixed(1) + 's';
+    return Math.floor(ms / 60000) + 'm ' + Math.round((ms % 60000) / 1000) + 's';
+  }
+  function n(x) { return x == null ? '–' : Number(x).toLocaleString('en-US'); }
+  function usage(u) {
+    if (!u) return '';
+    return 'in ' + n(u.input) + ' · out ' + n(u.output) + (u.cacheRead ? ' · cache r ' + n(u.cacheRead) : '') +
+      (u.cacheWrite ? ' · cache w ' + n(u.cacheWrite) : '') + (u.reasoning ? ' · reasoning ' + n(u.reasoning) : '');
+  }
+  function pre(text, cls) { return '<pre' + (cls ? ' class="' + cls + '"' : '') + '>' + esc(text) + '</pre>'; }
+  function json(v) { try { return JSON.stringify(v, null, 2); } catch (e) { return String(v); } }
+  function parseJsonl(text) {
+    var out = [];
+    text.split('\n').forEach(function (line) {
+      if (!line.trim()) return;
+      try { out.push(JSON.parse(line)); } catch (e) { /* truncated line */ }
+    });
+    return out;
+  }
+  function argsShort(input) {
+    if (input && Array.isArray(input.args)) return input.args.join(' ');
+    var s = json(input).replace(/\s+/g, ' ');
+    return s.length > 80 ? s.slice(0, 80) + '…' : s;
+  }
+
+  function renderHeader(h, p) {
+    if (!h) return '<div class="card hdr"><h2>' + esc(p) + '</h2><p class="err">No session header (transcript may be truncated).</p></div>';
+    return '<div class="card hdr"><h2>' + esc(h.model) + ' · <code>' + esc(h.condition) + '</code> · <code>' + esc(h.caseId) + '</code> r' + esc(h.rep) + '</h2>' +
+      '<dl class="kv"><dt>provider</dt><dd>' + esc(h.provider) + ' / ' + esc(h.providerModel) + '</dd>' +
+      '<dt>started</dt><dd>' + esc(h.startedAt) + '</dd>' +
+      '<dt>tools</dt><dd>' + esc((h.toolNames || []).join(', ')) + '</dd>' +
+      '<dt>skills</dt><dd>' + esc((h.skillsAvailable || []).join(', ') || '–') + '</dd>' +
+      '<dt>file</dt><dd><code>' + esc(p) + '</code></dd></dl>' +
+      '<details><summary>System prompt</summary><div class="body">' + pre(h.systemPrompt) + '</div></details>' +
+      '<details open><summary>User prompt</summary><div class="body">' + pre(h.userPrompt) + '</div></details></div>';
+  }
+
+  function renderTool(tc) {
+    var head = (tc.isError ? '<span class="err">✗</span> ' : '→ ') + '<b>' + esc(tc.name) + '</b>(<code>' + esc(argsShort(tc.input)) + '</code>)' +
+      ' <span class="muted">' + fmtMs(tc.durationMs) + ' · ' + n(tc.outputBytes) + ' B' + (tc.exitCode != null ? ' · exit ' + esc(tc.exitCode) : '') + '</span>';
+    var full = tc.blobPath && safePath(tc.blobPath)
+      ? '<p><a href="' + esc(urlFor(tc.blobPath)) + '" target="_blank" rel="noopener">view full output</a> <span class="muted">(' + esc(tc.blobPath) + ', showing preview)</span></p>'
+      : '';
+    return '<details><summary>' + head + '</summary><div class="body">' +
+      '<div class="lbl">input</div>' + pre(json(tc.input)) +
+      '<div class="lbl">output' + (tc.truncated ? ' (preview)' : '') + (tc.isError ? ' <span class="err">[ERROR]</span>' : '') + '</div>' + pre(tc.output) + full +
+      '</div></details>';
+  }
+
+  function renderTurn(t) {
+    var tools = t.toolCalls || [];
+    var summary = '<b>Turn ' + esc(t.turn) + '</b> <span class="muted">' + fmtMs(t.durationMs) + ' · ' + n((t.usage || {}).input) + '/' + n((t.usage || {}).output) + ' tok · ' +
+      tools.length + ' tool call' + (tools.length === 1 ? '' : 's') + (t.skillLoaded && t.skillLoaded.length ? ' · skill: ' + esc(t.skillLoaded.join(', ')) : '') + '</span> ' +
+      esc(tools.map(function (x) { return x.name; }).join(', '));
+    var body = '';
+    if (t.reasoning) body += '<div class="lbl">reasoning</div><div class="reason">' + pre(t.reasoning) + '</div>';
+    if (t.assistantText) body += '<div class="lbl">assistant</div>' + pre(t.assistantText);
+    if (tools.length) body += '<div class="lbl">tool calls</div>' + tools.map(renderTool).join('');
+    body += '<div class="lbl">meta</div><div class="muted" style="font-size:12px">' + esc(usage(t.usage)) + ' · finish: ' + esc(t.finishReason) +
+      (t.retries ? ' · retries: ' + esc(t.retries) : '') + ' · started ' + esc(t.startedAt) + '</div>';
+    return '<details class="turn"><summary>' + summary + '</summary><div class="body">' + body + '</div></details>';
+  }
+
+  function renderEnd(e) {
+    if (!e) return '<div class="card end"><b class="err">No end block</b> <span class="muted">— the session crashed or is still running.</span></div>';
+    var t = e.totals || {};
+    var j = e.judge;
+    return '<div class="card end"><div class="lbl">end · <span class="badge ' + esc(e.status) + '">' + esc(e.status) + '</span></div>' +
+      (e.error ? '<p class="err">' + esc(e.error.kind) + ': ' + esc(e.error.message) + '</p>' : '') +
+      '<div class="lbl">final answer</div>' + pre(e.finalAnswer || '') +
+      '<div class="lbl">judge</div>' + (j ? '<p><b class="' + (j.pass ? 'pass' : 'fail') + '">' + esc(j.score) + '/5 · ' + (j.pass ? 'pass' : 'fail') + '</b> <span class="muted">(' + esc(j.judgeModel) + ')</span></p>' + pre(j.reasoning) : '<p class="muted">not judged</p>') +
+      '<div class="lbl">totals</div><dl class="kv">' +
+      '<dt>turns</dt><dd>' + n(t.turns) + '</dd><dt>tokens</dt><dd>' + esc(usage(t.usage)) + '</dd>' +
+      '<dt>cost</dt><dd>' + (t.costUsd == null ? '–' : '$' + Number(t.costUsd).toFixed(4)) + '</dd>' +
+      '<dt>time</dt><dd>' + fmtMs(t.durationMs) + ' (model ' + fmtMs(t.modelTimeMs) + ', tools ' + fmtMs(t.toolTimeMs) + ')</dd>' +
+      '<dt>tool calls</dt><dd>' + n(t.toolCallCount) + ' (' + n(t.toolErrors) + ' errors) · ' + esc((t.distinctTools || []).join(', ')) + '</dd>' +
+      '<dt>skills loaded</dt><dd>' + esc((t.skillsLoaded || []).join(', ') || '–') + '</dd>' +
+      '<dt>ended</dt><dd>' + esc(e.endedAt) + '</dd></dl></div>';
+  }
+
+  function render(p, lines) {
+    var h = null, e = null, turns = [];
+    lines.forEach(function (l) {
+      if (l.type === 'session') h = l; else if (l.type === 'turn') turns.push(l); else if (l.type === 'end') e = l;
+    });
+    return renderHeader(h, p) + turns.map(renderTurn).join('') + renderEnd(e);
+  }
+
+  function load(p) {
+    return fetch(urlFor(p)).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + p);
+      return r.text();
+    }).then(function (text) { return render(p, parseJsonl(text)); });
+  }
+
+  var params = new URLSearchParams(location.search);
+  var root = document.getElementById('root');
+  var rawMain = params.get('path'), rawCmp = params.get('compare');
+  var main = safePath(rawMain), cmp = safePath(rawCmp);
+  if (!main) {
+    root.innerHTML = '<div class="card err">' + (rawMain ? 'Refusing unsafe path: <code>' + esc(rawMain) + '</code>' : 'Missing <code>?path=</code> parameter.') + '</div>';
+    return;
+  }
+  if (rawCmp && !cmp) root.insertAdjacentHTML('beforebegin', '<div class="note err">Ignoring unsafe compare path.</div>');
+
+  // "compare with" links: same case/rep under each other condition
+  var m = /^(transcripts\/[^/]+\/)([^/]+)(\/.+)$/.exec(main);
+  if (m) {
+    var conds = ['cli+skills', 'cli', 'mcp+skills', 'mcp'].filter(function (c) { return c !== m[2]; });
+    document.getElementById('cmpLinks').innerHTML = ' · compare with: ' + conds.map(function (c) {
+      var other = m[1] + c + m[3];
+      return '<a href="?path=' + encodeURIComponent(main) + '&compare=' + encodeURIComponent(other) + '">' + esc(c) + '</a>';
+    }).join(' · ') + (cmp ? ' · <a href="?path=' + encodeURIComponent(main) + '">single</a>' : '');
+  }
+
+  var paths = cmp ? [main, cmp] : [main];
+  if (paths.length === 2) root.classList.add('two');
+  var hint = location.protocol === 'file:' ? '<p class="muted">fetch() does not work over file://. Serve the run dir with <code>npx tsx src/cli.ts serve &lt;runDir&gt;</code>.</p>' : '';
+  Promise.all(paths.map(function (p) {
+    return load(p).catch(function (err) { return '<div class="card"><p class="err">' + esc(err && err.message ? err.message : err) + '</p>' + hint + '</div>'; });
+  })).then(function (htmls) {
+    root.innerHTML = htmls.map(function (h) { return '<div class="col">' + h + '</div>'; }).join('');
+  });
+
+  document.getElementById('expand').onclick = function () { root.querySelectorAll('details').forEach(function (d) { d.open = true; }); };
+  document.getElementById('collapse').onclick = function () { root.querySelectorAll('details').forEach(function (d) { d.open = false; }); };
+})();
+</script>
+</body></html>

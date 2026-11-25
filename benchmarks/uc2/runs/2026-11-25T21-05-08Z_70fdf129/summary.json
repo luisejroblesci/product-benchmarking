@@ -1,0 +1,1360 @@
+{
+  "runId": "70fdf129-d83c-4d4e-ac16-4c786cb8b252",
+  "generatedAt": "2026-11-25T21:33:54.726Z",
+  "cells": [
+    {
+      "model": "haiku-4-5",
+      "condition": "cli+skills",
+      "sessions": 30,
+      "completed": 29,
+      "errors": 1,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.6206896551724138,
+      "meanScore": 2.586206896551724,
+      "errorRate": 0.03333333333333333,
+      "avgTurns": 5.931034482758621,
+      "avgTotalTokens": 45785.65517241379,
+      "totalCostUsd": 1.5082590000000005,
+      "p50DurationMs": 19661,
+      "p90DurationMs": 32284.2,
+      "avgToolCalls": 6.137931034482759,
+      "avgToolErrors": 1.2413793103448276
+    },
+    {
+      "model": "haiku-4-5",
+      "condition": "cli",
+      "sessions": 30,
+      "completed": 30,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.5333333333333333,
+      "meanScore": 2.466666666666667,
+      "errorRate": 0,
+      "avgTurns": 7.066666666666666,
+      "avgTotalTokens": 40394.2,
+      "totalCostUsd": 1.3396300000000003,
+      "p50DurationMs": 16949,
+      "p90DurationMs": 34191.8,
+      "avgToolCalls": 7.6,
+      "avgToolErrors": 1.4
+    },
+    {
+      "model": "haiku-4-5",
+      "condition": "mcp+skills",
+      "sessions": 30,
+      "completed": 30,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.7333333333333333,
+      "meanScore": 2.9,
+      "errorRate": 0,
+      "avgTurns": 3.5,
+      "avgTotalTokens": 68835.53333333334,
+      "totalCostUsd": 2.194034,
+      "p50DurationMs": 15607.5,
+      "p90DurationMs": 31126.300000000017,
+      "avgToolCalls": 4.133333333333334,
+      "avgToolErrors": 0
+    },
+    {
+      "model": "haiku-4-5",
+      "condition": "mcp",
+      "sessions": 30,
+      "completed": 30,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.7,
+      "meanScore": 2.9,
+      "errorRate": 0,
+      "avgTurns": 3.466666666666667,
+      "avgTotalTokens": 63867.13333333333,
+      "totalCostUsd": 2.0435380000000003,
+      "p50DurationMs": 16280.5,
+      "p90DurationMs": 33897.8,
+      "avgToolCalls": 4.633333333333334,
+      "avgToolErrors": 0
+    },
+    {
+      "model": "sonnet-5",
+      "condition": "cli+skills",
+      "sessions": 30,
+      "completed": 30,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.9666666666666667,
+      "meanScore": 3.8333333333333335,
+      "errorRate": 0,
+      "avgTurns": 8.1,
+      "avgTotalTokens": 204109.46666666667,
+      "totalCostUsd": 13.331719999999999,
+      "p50DurationMs": 39119.5,
+      "p90DurationMs": 126531.10000000002,
+      "avgToolCalls": 12.5,
+      "avgToolErrors": 0.4
+    },
+    {
+      "model": "sonnet-5",
+      "condition": "cli",
+      "sessions": 30,
+      "completed": 30,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.9,
+      "meanScore": 3.7,
+      "errorRate": 0,
+      "avgTurns": 9,
+      "avgTotalTokens": 129560.63333333333,
+      "totalCostUsd": 8.753013999999999,
+      "p50DurationMs": 42114,
+      "p90DurationMs": 109290.10000000002,
+      "avgToolCalls": 15.966666666666667,
+      "avgToolErrors": 0.4666666666666667
+    },
+    {
+      "model": "sonnet-5",
+      "condition": "mcp+skills",
+      "sessions": 30,
+      "completed": 30,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 3.966666666666667,
+      "errorRate": 0,
+      "avgTurns": 5.766666666666667,
+      "avgTotalTokens": 167041.23333333334,
+      "totalCostUsd": 10.953546000000001,
+      "p50DurationMs": 39604,
+      "p90DurationMs": 96615.20000000003,
+      "avgToolCalls": 7.966666666666667,
+      "avgToolErrors": 0.1
+    },
+    {
+      "model": "sonnet-5",
+      "condition": "mcp",
+      "sessions": 30,
+      "completed": 30,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 4.033333333333333,
+      "errorRate": 0,
+      "avgTurns": 5.666666666666667,
+      "avgTotalTokens": 155124.63333333333,
+      "totalCostUsd": 10.130102,
+      "p50DurationMs": 29442,
+      "p90DurationMs": 81882.70000000003,
+      "avgToolCalls": 8.366666666666667,
+      "avgToolErrors": 0
+    },
+    {
+      "model": "opus-5-5",
+      "condition": "cli+skills",
+      "sessions": 30,
+      "completed": 30,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 4.5,
+      "errorRate": 0,
+      "avgTurns": 8.133333333333333,
+      "avgTotalTokens": 154260.63333333333,
+      "totalCostUsd": 19.917532,
+      "p50DurationMs": 37463,
+      "p90DurationMs": 70880.40000000001,
+      "avgToolCalls": 13.7,
+      "avgToolErrors": 0.9
+    },
+    {
+      "model": "opus-5-5",
+      "condition": "cli",
+      "sessions": 30,
+      "completed": 30,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 0.9666666666666667,
+      "meanScore": 4.366666666666666,
+      "errorRate": 0,
+      "avgTurns": 8.766666666666667,
+      "avgTotalTokens": 185082.23333333334,
+      "totalCostUsd": 23.646171999999996,
+      "p50DurationMs": 37410,
+      "p90DurationMs": 80833,
+      "avgToolCalls": 16.833333333333332,
+      "avgToolErrors": 0.4
+    },
+    {
+      "model": "opus-5-5",
+      "condition": "mcp+skills",
+      "sessions": 30,
+      "completed": 30,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 4.4,
+      "errorRate": 0,
+      "avgTurns": 5.5,
+      "avgTotalTokens": 173698.93333333332,
+      "totalCostUsd": 22.078208000000004,
+      "p50DurationMs": 30582.5,
+      "p90DurationMs": 59510.00000000002,
+      "avgToolCalls": 9.533333333333333,
+      "avgToolErrors": 0.06666666666666667
+    },
+    {
+      "model": "opus-5-5",
+      "condition": "mcp",
+      "sessions": 30,
+      "completed": 30,
+      "errors": 0,
+      "skipped": 0,
+      "judgeErrors": 0,
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "errorRate": 0,
+      "avgTurns": 4.9,
+      "avgTotalTokens": 131623.93333333332,
+      "totalCostUsd": 16.884456000000004,
+      "p50DurationMs": 31140.5,
+      "p90DurationMs": 57287.4,
+      "avgToolCalls": 8.866666666666667,
+      "avgToolErrors": 0
+    }
+  ],
+  "byCase": [
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 7.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0.6666666666666666,
+      "meanScore": 2.3333333333333335,
+      "avgTurns": 6.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3.3333333333333335,
+      "avgTurns": 2.3333333333333335,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 5.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 7.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 11.666666666666666,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "diagnose-failed-build",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 7.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 5.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3.3333333333333335,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 3.3333333333333335,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 5.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3.3333333333333335,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "find-flaky-tests",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0.3333333333333333,
+      "meanScore": 1.6666666666666667,
+      "avgTurns": 2.6666666666666665,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 1,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 0.6666666666666666,
+      "meanScore": 2.6666666666666665,
+      "avgTurns": 2.6666666666666665,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 0.6666666666666666,
+      "meanScore": 2.6666666666666665,
+      "avgTurns": 2.3333333333333335,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 7.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 3.3333333333333335,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 8.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 8,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 2,
+      "unfinished": 0
+    },
+    {
+      "caseId": "monitor-pipeline-status",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 2.3333333333333335,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 6.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 0.6666666666666666,
+      "meanScore": 2.6666666666666665,
+      "avgTurns": 5.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 13.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 15,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 11,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 8,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 9.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 7.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "optimize-resource-usage",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 6.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0.6666666666666666,
+      "meanScore": 3.3333333333333335,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0.6666666666666666,
+      "meanScore": 3,
+      "avgTurns": 6.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 2.6666666666666665,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 5.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 3.6666666666666665,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 4.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 5.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 3.3333333333333335,
+      "unfinished": 0
+    },
+    {
+      "caseId": "rerun-failed-workflow",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 3.6666666666666665,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 7.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 16.333333333333332,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 6.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 11.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 5.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 6.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 7.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "retrieve-build-artifacts",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 6.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0.3333333333333333,
+      "meanScore": 2,
+      "avgTurns": 10.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0.3333333333333333,
+      "meanScore": 2.6666666666666665,
+      "avgTurns": 11,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 0.3333333333333333,
+      "meanScore": 2.3333333333333335,
+      "avgTurns": 2.6666666666666665,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 3,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 12.666666666666666,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 16,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3.3333333333333335,
+      "avgTurns": 9.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 16.333333333333332,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 12.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "audit-recent-deployments",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0.6666666666666666,
+      "meanScore": 2.6666666666666665,
+      "avgTurns": 6.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0.6666666666666666,
+      "meanScore": 2.6666666666666665,
+      "avgTurns": 10.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 1.6666666666666667,
+      "avgTurns": 4.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 0.3333333333333333,
+      "meanScore": 2,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3.3333333333333335,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3.3333333333333335,
+      "avgTurns": 9.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 7,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 6.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 5,
+      "avgTurns": 10.666666666666666,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 16.666666666666668,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 9.666666666666666,
+      "unfinished": 0
+    },
+    {
+      "caseId": "debug-slow-pipeline",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 8.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 4.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 3.6666666666666665,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 10.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 4.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 9.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 5.666666666666667,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 8.666666666666666,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 4.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 8.666666666666666,
+      "unfinished": 0
+    },
+    {
+      "caseId": "validate-config",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 5.333333333333333,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli+skills",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 1,
+      "avgTurns": 5,
+      "unfinished": 1
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli",
+      "model": "haiku-4-5",
+      "passRate": 0,
+      "meanScore": 1,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp+skills",
+      "model": "haiku-4-5",
+      "passRate": 0.3333333333333333,
+      "meanScore": 2,
+      "avgTurns": 3.6666666666666665,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp",
+      "model": "haiku-4-5",
+      "passRate": 0.3333333333333333,
+      "meanScore": 1.6666666666666667,
+      "avgTurns": 4,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli+skills",
+      "model": "sonnet-5",
+      "passRate": 0.6666666666666666,
+      "meanScore": 3,
+      "avgTurns": 9.666666666666666,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli",
+      "model": "sonnet-5",
+      "passRate": 0,
+      "meanScore": 2,
+      "avgTurns": 8,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp+skills",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 8.666666666666666,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp",
+      "model": "sonnet-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 5,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4,
+      "avgTurns": 8.333333333333334,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "cli",
+      "model": "opus-5-5",
+      "passRate": 0.6666666666666666,
+      "meanScore": 3.6666666666666665,
+      "avgTurns": 9,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp+skills",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.333333333333333,
+      "avgTurns": 6,
+      "unfinished": 0
+    },
+    {
+      "caseId": "compare-test-results-branches",
+      "condition": "mcp",
+      "model": "opus-5-5",
+      "passRate": 1,
+      "meanScore": 4.666666666666667,
+      "avgTurns": 6,
+      "unfinished": 0
+    }
+  ],
+  "skillsDelta": [
+    {
+      "model": "haiku-4-5",
+      "surface": "cli",
+      "passRateDelta": 0.08735632183908049,
+      "meanScoreDelta": 0.11954022988505741,
+      "tokensDelta": 5391.455172413793
+    },
+    {
+      "model": "haiku-4-5",
+      "surface": "mcp",
+      "passRateDelta": 0.033333333333333326,
+      "meanScoreDelta": 0,
+      "tokensDelta": 4968.400000000009
+    },
+    {
+      "model": "sonnet-5",
+      "surface": "cli",
+      "passRateDelta": 0.06666666666666665,
+      "meanScoreDelta": 0.1333333333333333,
+      "tokensDelta": 74548.83333333334
+    },
+    {
+      "model": "sonnet-5",
+      "surface": "mcp",
+      "passRateDelta": 0,
+      "meanScoreDelta": -0.06666666666666643,
+      "tokensDelta": 11916.600000000006
+    },
+    {
+      "model": "opus-5-5",
+      "surface": "cli",
+      "passRateDelta": 0.033333333333333326,
+      "meanScoreDelta": 0.13333333333333375,
+      "tokensDelta": -30821.600000000006
+    },
+    {
+      "model": "opus-5-5",
+      "surface": "mcp",
+      "passRateDelta": 0,
+      "meanScoreDelta": 0.06666666666666732,
+      "tokensDelta": 42075
+    }
+  ]
+}
